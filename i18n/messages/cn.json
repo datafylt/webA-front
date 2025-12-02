@@ -1,0 +1,62 @@
+{
+  "lang": "intext",
+  "app_name": "Datafylt Admin",
+  "header": {
+    "label_profile": "personalInfo",
+    "label_logout": "Logout",
+    "label_logout_dialog_title": "Notice",
+    "text_logout_confirm": "Confirmlogout？",
+    "text_logout_success": "alreadyLogout"
+  },
+  "views": {
+    "login": {
+      "text_login": "Login",
+      "message_input_username_password": "Please enterUsernameandPassword",
+      "message_verifying": "currentlyValidate...",
+      "message_login_success": "Login successful"
+    },
+    "workbench": {
+      "label_workbench": "Workbench",
+      "text_hello": "hello, {username}",
+      "text_welcome": "TodayagainYesenergeticoneday!",
+      "label_number_of_items": "Projectnumber",
+      "label_upcoming": "Todo",
+      "label_information": "message",
+      "label_project": "Project",
+      "label_more": "More"
+    },
+    "profile": {
+      "label_profile": "Profile",
+      "label_modify_information": "ModifyInfo",
+      "label_change_password": "Change Password",
+      "label_avatar": "Avatar",
+      "label_username": "UserName",
+      "label_email": "Email",
+      "label_old_password": "Old Password",
+      "label_new_password": "New Password",
+      "label_confirm_password": "Confirm Password",
+      "placeholder_username": "Please fill inName",
+      "placeholder_email": "Please fill inEmail",
+      "placeholder_old_password": "Please enterOld Password",
+      "placeholder_new_password": "Please enterNew Password",
+      "placeholder_confirm_password": "please input againNew Password",
+      "message_username_required": "Please enterNickname",
+      "message_old_password_required": "Please enterOld Password",
+      "message_new_password_required": "Please enterNew Password",
+      "message_password_confirmation_required": "please input againPassword",
+      "message_password_confirmation_diff": "twicePasswordinputnotonecause"
+    },
+    "errors": {
+      "label_error": "Errorpage",
+      "text_back_to_home": "BackHome"
+    }
+  },
+  "common": {
+    "text": {
+      "update_success": "Modified successfully"
+    },
+    "buttons": {
+      "update": "Modify"
+    }
+  }
+}
