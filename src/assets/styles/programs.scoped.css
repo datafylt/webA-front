@@ -1,0 +1,65 @@
+.program-section {
+  padding: 60px 0;
+}
+
+.program-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
+}
+
+.program-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.program-main :deep(h4) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0277BC;
+  margin: 25px 0 15px;
+}
+
+.program-main :deep(ul) {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
+.program-main :deep(ul li) {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.8;
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.program-main :deep(ul li::before) {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: #0277BC;
+  font-weight: bold;
+}
+
+.program-main :deep(blockquote) {
+  background: #f5f9fc;
+  border-left: 4px solid #0277BC;
+  padding: 20px 25px;
+  margin: 25px 0;
+  font-style: italic;
+  color: #555;
+}
+
+@media (max-width: 991px) {
+  .program-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .program-sidebar {
+    order: -1;
+  }
+}

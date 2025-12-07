@@ -14,7 +14,7 @@ export const publicRoutes = [
       {
         path: '',
         name: 'Home',
-        component: () => import('@/views/public/home/index.vue'),
+        component: () => import('@/views/public/home.vue'),
         meta: {
           title: 'Accueil - Formation Électro Inc',
           public: true
@@ -34,7 +34,7 @@ export const publicRoutes = [
       {
         path: '',
         name: 'About',
-        component: () => import('@/views/public/about/index.vue'),
+        component: () => import('@/views/public/about.vue'),
         meta: {
           title: 'À propos de nous - Formation Électro Inc',
           public: true
@@ -52,7 +52,7 @@ export const publicRoutes = [
       {
         path: '',
         name: 'Programs',
-        component: () => import('@/views/public/programs/index.vue'),
+        component: () => import('@/views/public/programs/programs.vue'),
         meta: {
           title: 'Programmes - Formation Électro Inc',
           public: true
@@ -61,7 +61,7 @@ export const publicRoutes = [
       {
         path: ':id',
         name: 'ProgramDetail',
-        component: () => import('@/views/public/programs/detail.vue'),
+        component: () => import('@/views/public/programs/program-detail.vue'),
         meta: {
           title: 'Programme - Formation Électro Inc',
           public: true
@@ -79,7 +79,7 @@ export const publicRoutes = [
       {
         path: '',
         name: 'Instructors',
-        component: () => import('@/views/public/instructors/index.vue'),
+        component: () => import('@/views/public/instructors.vue'),
         meta: {
           title: 'Nos instructeurs - Formation Électro Inc',
           public: true
@@ -97,7 +97,7 @@ export const publicRoutes = [
       {
         path: '',
         name: 'Contact',
-        component: () => import('@/views/public/contact/index.vue'),
+        component: () => import('@/views/public/contact.vue'),
         meta: {
           title: 'Contactez-nous - Formation Électro Inc',
           public: true
