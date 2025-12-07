@@ -79,7 +79,7 @@
                   <router-link to="/contact" @click="closeMobileMenu">Contactez-nous</router-link>
                 </li>
                 <li class="nav-login">
-                  <router-link to="/login" @click="closeMobileMenu">Connexion</router-link>
+                  <a href="/login" @click.prevent="goToLogin">Connexion</a>
                 </li>
               </ul>
             </nav>
@@ -179,9 +179,10 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
+const router = useRouter()
 
 // State
 const loading = ref(true)
@@ -199,6 +200,11 @@ const isActive = (path) => {
     return route.path === '/'
   }
   return route.path.startsWith(path)
+}
+
+const goToLogin = () => {
+  closeMobileMenu()
+  router.push('/login')
 }
 
 const toggleMobileMenu = () => {
@@ -359,57 +365,52 @@ onUnmounted(() => {
 }
 
 .top-left ul li {
-  color: #fff;
+  color: #ededed;
   font-size: 13px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
 }
 
 .top-left ul li a {
-  color: #fff;
+  color: #ededed;
   text-decoration: none;
-  transition: opacity 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .top-left ul li a:hover {
-  opacity: 0.8;
-}
-
-.top-left .icon {
   color: #0277BC;
 }
 
-/* Social Icons */
-.social-icons {
-  display: flex;
-  gap: 8px;
+.icon {
+  font-size: 14px;
 }
 
+/* Social Icons */
 .social-icons li a {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25px;
-  height: 25px;
-  background: #fff;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  color: #002b53;
-  font-size: 11px;
-  font-weight: 700;
+  color: #fff;
+  font-size: 12px;
   text-decoration: none;
   transition: all 0.3s;
 }
 
 .social-icons li a:hover {
   background: #0277BC;
-  color: #fff;
 }
 
 /* Nav Bar */
 .nav-bar {
   background: #fff;
-  padding: 0;
+  padding: 15px 0;
 }
 
 .nav-inner {
@@ -418,23 +419,9 @@ onUnmounted(() => {
   justify-content: space-between;
 }
 
-/* Logo */
-.logo {
-  display: block;
-  padding: 15px 0;
-}
-
 .logo img {
   height: 50px;
   width: auto;
-}
-
-.main-header.is-scrolled .logo {
-  padding: 8px 0;
-}
-
-.main-header.is-scrolled .logo img {
-  height: 45px;
 }
 
 /* Main Navigation */
@@ -448,13 +435,11 @@ onUnmounted(() => {
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 5px;
+  gap: 25px;
 }
 
 .nav-menu > li > a {
-  display: block;
-  padding: 15px 15px;
-  color: #000;
+  color: #002b53;
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
@@ -533,6 +518,13 @@ onUnmounted(() => {
   color: #fff !important;
   padding: 10px 20px !important;
   border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background 0.3s;
 }
 
 .nav-login a:hover {

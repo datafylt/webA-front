@@ -1,19 +1,84 @@
+/* ================================
+   Team Intro Section (light bg)
+   ================================ */
+.team-intro-section {
+  background: #fff;
+  padding: 60px 0;
+}
+
+.team-intro {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.team-intro-image {
+  position: relative;
+}
+
+.title-border {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.bulb-icon {
+  font-size: 24px;
+  display: inline-block;
+  padding: 10px 20px;
+  border-top: 2px solid #0277BC;
+  border-bottom: 2px solid #0277BC;
+}
+
+.team-intro-image img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.team-intro-text {
+  padding-top: 40px;
+}
+
+.team-intro-text p {
+  color: #555;
+  font-size: 16px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.team-intro-text p:last-child {
+  margin-bottom: 0;
+}
+
+/* ================================
+   Team Gallery Section
+   ================================ */
 .team-content-section {
-  background: #002b53;
+  background: #f8f9fa;
   padding: 60px 0;
 }
 
 .team-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .team-member {
   background: #fff;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
 
 .member-image {
@@ -58,9 +123,31 @@
   margin: 0;
 }
 
+/* ================================
+   Responsive
+   ================================ */
 @media (max-width: 991px) {
+  .team-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .team-intro-image {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .team-intro-text {
+    padding-top: 0;
+    text-align: center;
+  }
+
+  .team-intro-text p {
+    text-align: center;
+  }
+
   .team-gallery {
     grid-template-columns: repeat(2, 1fr);
+    max-width: 100%;
   }
 }
 

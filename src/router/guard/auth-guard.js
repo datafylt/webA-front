@@ -23,6 +23,13 @@ const isPublicPath = (path) => {
 export function createAuthGuard(router) {
   router.beforeEach(async (to) => {
     // ═══════════════════════════════════════════════════════════
+    // LOGIN PAGE - Always accessible
+    // ═══════════════════════════════════════════════════════════
+    if (to.path === '/login') {
+      return true
+    }
+
+    // ═══════════════════════════════════════════════════════════
     // PUBLIC WEBSITE ROUTES - No authentication required
     // ═══════════════════════════════════════════════════════════
     if (isPublicPath(to.path)) {
@@ -34,18 +41,17 @@ export function createAuthGuard(router) {
     }
 
     // ═══════════════════════════════════════════════════════════
-    // EXISTING AUTH LOGIC
+    // ADMIN ROUTES - Authentication required
     // ═══════════════════════════════════════════════════════════
     const token = getToken()
 
-    /** No token case */
+    /** No token case - redirect to login */
     if (isNullOrWhitespace(token)) {
       if (WHITE_LIST.includes(to.path)) return true
-      return { path: 'login', query: { ...to.query, redirect: to.path } }
+      return { path: '/login', query: { ...to.query, redirect: to.path } }
     }
 
-    /** Has token case */
-    if (to.path === '/login') return { path: '/' }
+    /** Has token case - allow access */
     return true
   })
 }

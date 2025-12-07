@@ -24,6 +24,28 @@
   max-width: 900px;
 }
 
+.fe-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.fe-list li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.fe-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #0277BC;
+  font-weight: bold;
+}
+
 @media (max-width: 991px) {
   .about-grid {
     grid-template-columns: 1fr;

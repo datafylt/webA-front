@@ -8,44 +8,58 @@
       <div class="fe-container">
         <div class="about-grid">
           <div class="about-text fe-content">
-            <h2>Fondateur</h2>
+            <h2>Notre Histoire</h2>
             <p class="fe-text-justify">
-              Voici un bref historique de "formation électro Inc." et les noms de plusieurs
-              entreprises qui ont pu bénéficier de nos formations et services.
-            </p>
-            <p class="fe-text-justify">
-              Yvan Dumais est maître électricien, il détient un certificat de qualification
-              d'électricien interprovincial et d'un brevet d'enseignement en électrotechnique
-              du ministère de l'Éducation du Québec, il est aussi formateur en santé et
-              sécurité dans le milieu du travail.
-            </p>
-            <p class="fe-text-justify">
-              Après une carrière de plus de 10 ans comme électricien professionnel il a
-              poursuivi les prochaines 25 années dans l'enseignement de l'électrotechnique.
-              En 1992, il a fondé l'entreprise "formation électro Inc." et depuis il a
-              partagé son savoir-faire à M. Mahmad Sabhir Pheerunggee.
+              Depuis plus de trois décennies, Formation Électro Inc. se distingue comme
+              un leader dans la formation professionnelle en électricité au Québec. Notre
+              entreprise a accompagné des milliers de candidats vers la réussite de leurs
+              examens de qualification, contribuant ainsi à l'excellence de la main-d'œuvre
+              québécoise dans le secteur de l'électricité.
             </p>
 
-            <h2>Expérience</h2>
+            <h2>Le Fondateur</h2>
             <p class="fe-text-justify">
-              Fort de cette longue expérience pratique et de ses connaissances théoriques
-              approfondie, il a d'abord élaboré un plan de formations pour aider les apprentis
-              électriciens à réviser leurs notions théoriques dans le but de présenter et
-              réussir le test de compagnon électricien (licence C) construction ou hors
-              construction et pour le test d'électricien interprovincial (sceau rouge).
+              Yvan Dumais est maître électricien et le fondateur de Formation Électro Inc.
+              Il détient un certificat de qualification d'électricien interprovincial ainsi
+              qu'un brevet d'enseignement en électrotechnique du ministère de l'Éducation
+              du Québec. Il est également formateur certifié en santé et sécurité dans le
+              milieu du travail.
             </p>
             <p class="fe-text-justify">
-              Par la suite il a élaboré un autre plan de formation pour les électriciens
-              afin de les aider pour les tests de Maîtres électriciens ou constructeurs
-              propriétaires.
+              Après une carrière de plus de 10 ans comme électricien professionnel sur le
+              terrain, M. Dumais a consacré les 25 années suivantes à l'enseignement de
+              l'électrotechnique. En 1992, animé par sa passion pour la transmission du
+              savoir, il a fondé l'entreprise "Formation Électro Inc." avec la mission
+              d'offrir une formation de qualité supérieure aux futurs électriciens du Québec.
+            </p>
+            <p class="fe-text-justify">
+              Au fil des années, M. Dumais a partagé son expertise et son savoir-faire avec
+              M. Mahmad Sabhir Pheerunggee, qui est aujourd'hui instructeur principal et
+              associé de l'entreprise.
+            </p>
+
+            <h2>Notre Expertise</h2>
+            <p class="fe-text-justify">
+              Fort de cette longue expérience pratique et de connaissances théoriques
+              approfondies, notre équipe a développé des programmes de formation complets
+              et structurés. Ces programmes sont spécifiquement conçus pour aider les
+              apprentis électriciens à maîtriser les notions essentielles et à réussir
+              leurs examens de qualification.
+            </p>
+            <p class="fe-text-justify">
+              Nos formations couvrent notamment la préparation au test de compagnon
+              électricien (Licence C) pour la construction et hors construction, ainsi
+              que le test d'électricien interprovincial (Sceau Rouge). Nous offrons
+              également des formations pour les examens de maîtres électriciens et de
+              constructeurs propriétaires (RBQ).
             </p>
           </div>
           <div class="about-images">
             <div class="about-img">
-              <img src="/images/team4.png" alt="Fondateur" />
+              <img src="/images/team4.png" alt="Yvan Dumais - Fondateur" />
             </div>
             <div class="about-img">
-              <img src="/images/aboutUs.png" alt="Formation Électro" />
+              <img src="/images/aboutUs.png" alt="Formation Électro - Nos installations" />
             </div>
           </div>
         </div>
@@ -62,25 +76,43 @@
     <section class="about-section">
       <div class="fe-container">
         <div class="about-text fe-content about-text--narrow">
-          <h2>En 2008</h2>
+          <h2>Expansion en 2008</h2>
           <p class="fe-text-justify">
-            J'ai élaboré un plan de formation pour les futurs compagnons en connexions
-            restreintes d'appareillage électrique puisque c'est l'année ou Emploie Québec
-            et ses partenaires donnaient cette accessibilité aux travailleurs Québécois
-            soit d'obtenir le certificat de compagnon connexions restreintes d'appareillage
-            électrique (CRCA).
+            En 2008, Formation Électro Inc. a élargi son offre de services en développant
+            un programme de formation pour les futurs compagnons en connexions restreintes
+            d'appareillage électrique (RCA). Cette initiative répondait à la nouvelle
+            accessibilité offerte par Emploi Québec et ses partenaires, permettant aux
+            travailleurs québécois d'obtenir le certificat de compagnon en connexions
+            restreintes d'appareillage électrique.
+          </p>
+
+          <h2>Nos Services</h2>
+          <p class="fe-text-justify">
+            Aujourd'hui, Formation Électro Inc. dispense une gamme complète de formations
+            pratiques et théoriques adaptées aux besoins de l'industrie. Notre offre comprend :
+          </p>
+          <ul class="fe-list">
+            <li>Contrôle de moteurs électriques</li>
+            <li>Installation et contrôle de systèmes de chauffage et de climatisation</li>
+            <li>Installation et contrôle de systèmes d'éclairage</li>
+            <li>Installation de transformateurs monophasés et triphasés</li>
+            <li>Lecture de plans et devis électriques</li>
+            <li>Interprétation de croquis et schémas</li>
+            <li>Élaboration d'examens pré-embauche théoriques et pratiques</li>
+          </ul>
+
+          <h2>Notre Engagement</h2>
+          <p class="fe-text-justify">
+            Formation Électro Inc. est officiellement reconnue par Emploi Québec
+            (No. d'agrément : 0055420). Cette reconnaissance témoigne de la qualité
+            de nos formations et de notre engagement envers l'excellence.
           </p>
           <p class="fe-text-justify">
-            Plus est, Formation Électro inc, dispense des formations pratiques et théoriques
-            en contrôle de moteurs, installation et contrôle de chauffage, d'éclairage et
-            installation de transformateurs monophasé ou triphasé. Des cours en lecture de
-            plans et devis, de croquis et schémas, élaboration d'examens pré-embauche
-            théoriques et pratiques.
-          </p>
-          <p class="fe-text-justify">
-            Bref, Formation Électro Inc. peut répondre à plusieurs, sinon tous vos besoins
-            de formations en ce qui concerne l'électricité et est une référence très
-            appréciable dans ce domaine.
+            Que vous soyez un apprenti électricien, un professionnel cherchant à
+            obtenir une nouvelle qualification, ou une entreprise souhaitant former
+            son personnel, Formation Électro Inc. peut répondre à tous vos besoins
+            de formation en électricité. Nous sommes fiers d'être une référence
+            incontournable dans ce domaine au Québec.
           </p>
         </div>
       </div>
@@ -97,8 +129,8 @@
 <script setup>
 import { BreadcrumbSection, CtaSection, TeamSection, TestimonialsSection } from '@/components/public'
 
-const ctaTitle = "L'élaboration des examens mesurant la compétence du pré-embauche"
-const ctaDescription = "À la demande des dirigeants d'entreprises, \"Formation électro Inc.\" élabore des examens théoriques et pratiques dans le but d'évaluer la compétence des éventuels candidats à l'embauche."
+const ctaTitle = "Examens de compétence pour le pré-embauche"
+const ctaDescription = "À la demande des dirigeants d'entreprises, Formation Électro Inc. élabore des examens théoriques et pratiques personnalisés afin d'évaluer rigoureusement les compétences des candidats à l'embauche dans le domaine de l'électricité."
 </script>
 
 <style scoped src="@/assets/styles/about.scoped.css"></style>

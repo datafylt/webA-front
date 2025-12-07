@@ -190,6 +190,84 @@ export const basicRoutes = [
             },
         ],
     },
+    // ═══════════════════════════════════════════════════════════
+    // SYSTEM / DEVELOPER TOOLS
+    // ═══════════════════════════════════════════════════════════
+    {
+        name: 'System',
+        path: '/system',
+        component: Layout,
+        meta: {
+            title: 'System',
+            icon: 'mdi:cog',
+            order: 10,
+        },
+        children: [
+            {
+                path: 'component-tree',
+                name: 'ComponentTree',
+                component: () => import('@/views/system/component-tree/index.vue'),
+                meta: {
+                    title: 'Component Tree',
+                    icon: 'mdi:file-tree',
+                },
+            },
+            {
+                path: 'user',
+                name: 'System-User',
+                component: () => import('@/views/system/user/index.vue'),
+                meta: {
+                    title: 'Users',
+                    icon: 'mdi:account-multiple',
+                },
+            },
+            {
+                path: 'role',
+                name: 'System-Role',
+                component: () => import('@/views/system/role/index.vue'),
+                meta: {
+                    title: 'Roles',
+                    icon: 'mdi:shield-account',
+                },
+            },
+            {
+                path: 'menu',
+                name: 'System-Menu',
+                component: () => import('@/views/system/menu/index.vue'),
+                meta: {
+                    title: 'Menus',
+                    icon: 'mdi:menu',
+                },
+            },
+            {
+                path: 'dept',
+                name: 'System-Dept',
+                component: () => import('@/views/system/dept/index.vue'),
+                meta: {
+                    title: 'Departments',
+                    icon: 'mdi:office-building',
+                },
+            },
+            {
+                path: 'api',
+                name: 'System-Api',
+                component: () => import('@/views/system/api/index.vue'),
+                meta: {
+                    title: 'API',
+                    icon: 'mdi:api',
+                },
+            },
+            {
+                path: 'auditlog',
+                name: 'System-AuditLog',
+                component: () => import('@/views/system/auditlog/index.vue'),
+                meta: {
+                    title: 'Audit Log',
+                    icon: 'mdi:history',
+                },
+            },
+        ],
+    },
 ]
 
 export const NOT_FOUND_ROUTE = {
