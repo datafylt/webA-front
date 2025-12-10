@@ -14,14 +14,14 @@ export const publicRoutes = [
       {
         path: '',
         name: 'Home',
-        component: () => import('@/views/public/home.vue'),
-        meta: {
+        component: () => import('@/views/public/home/home.vue'),
+        meta: { 
           title: 'Accueil - Formation Électro Inc',
-          public: true
+          public: true 
         }
       }
     ],
-    meta: {
+    meta: { 
       public: true,
       order: -1  // Show before admin routes
     }
@@ -34,10 +34,10 @@ export const publicRoutes = [
       {
         path: '',
         name: 'About',
-        component: () => import('@/views/public/about.vue'),
-        meta: {
+        component: () => import('@/views/public/about/about.vue'),
+        meta: { 
           title: 'À propos de nous - Formation Électro Inc',
-          public: true
+          public: true 
         }
       }
     ],
@@ -53,18 +53,18 @@ export const publicRoutes = [
         path: '',
         name: 'Programs',
         component: () => import('@/views/public/programs/programs.vue'),
-        meta: {
+        meta: { 
           title: 'Programmes - Formation Électro Inc',
-          public: true
+          public: true 
         }
       },
       {
         path: ':id',
         name: 'ProgramDetail',
         component: () => import('@/views/public/programs/program-detail.vue'),
-        meta: {
+        meta: { 
           title: 'Programme - Formation Électro Inc',
-          public: true
+          public: true 
         }
       }
     ],
@@ -79,10 +79,10 @@ export const publicRoutes = [
       {
         path: '',
         name: 'Instructors',
-        component: () => import('@/views/public/instructors.vue'),
-        meta: {
+        component: () => import('@/views/public/instructors/instructors.vue'),
+        meta: { 
           title: 'Nos instructeurs - Formation Électro Inc',
-          public: true
+          public: true 
         }
       }
     ],
@@ -97,10 +97,10 @@ export const publicRoutes = [
       {
         path: '',
         name: 'Contact',
-        component: () => import('@/views/public/contact.vue'),
-        meta: {
+        component: () => import('@/views/public/contact/contact.vue'),
+        meta: { 
           title: 'Contactez-nous - Formation Électro Inc',
-          public: true
+          public: true 
         }
       }
     ],

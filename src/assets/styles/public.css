@@ -18,15 +18,15 @@
   --fe-white: #ffffff;
   --fe-bg-dark: #222;
   --fe-bg-darker: #191919;
-
+  
   /* Typography */
   --fe-font-primary: 'Open Sans', sans-serif;
   --fe-font-heading: 'Roboto', sans-serif;
-
+  
   /* Spacing */
   --fe-section-padding: 60px;
   --fe-container-width: 1170px;
-
+  
   /* Transitions */
   --fe-transition: all 0.3s ease;
 }

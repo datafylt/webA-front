@@ -1,5 +1,9 @@
 import i18n from '~/i18n'
-import { publicRoutes } from './public'  // ← Import public routes
+import { publicRoutes } from './public'
+import { schoolRoutes } from './school'
+// Student and Instructor routes will be added later when role-based filtering is implemented
+// import { studentRoutes } from './student'
+// import { instructorRoutes } from './instructor'
 
 const { t } = i18n.global
 
@@ -12,7 +16,7 @@ export const basicRoutes = [
     ...publicRoutes,
 
     // ═══════════════════════════════════════════════════════════
-    // ADMIN ROUTES (Authentication required)
+    // ADMIN DASHBOARD
     // ═══════════════════════════════════════════════════════════
     {
         path: '/admin',
@@ -20,25 +24,34 @@ export const basicRoutes = [
         meta: { order: 0 },
     },
     {
-        name: t('views.workbench.label_workbench'),
+        name: 'Tableau de bord',
         path: '/workbench',
         component: Layout,
         children: [
             {
                 path: '',
                 component: () => import('@/views/workbench/index.vue'),
-                name: `${t('views.workbench.label_workbench')}Default`,
+                name: 'WorkbenchDefault',
                 meta: {
-                    title: t('views.workbench.label_workbench'),
-                    icon: 'icon-park-outline:workbench',
+                    title: 'Tableau de bord',
+                    icon: 'mdi:view-dashboard',
                     affix: true,
                 },
             },
         ],
         meta: { order: 1 },
     },
+
+    // ═══════════════════════════════════════════════════════════
+    // SCHOOL MANAGEMENT ROUTES (Admin)
+    // ═══════════════════════════════════════════════════════════
+    ...schoolRoutes,
+
+    // ═══════════════════════════════════════════════════════════
+    // USER PROFILE (All authenticated users)
+    // ═══════════════════════════════════════════════════════════
     {
-        name: t('views.profile.label_profile'),
+        name: 'Profil',
         path: '/profile',
         component: Layout,
         isHidden: true,
@@ -46,23 +59,27 @@ export const basicRoutes = [
             {
                 path: '',
                 component: () => import('@/views/profile/index.vue'),
-                name: `${t('views.profile.label_profile')}Default`,
+                name: 'ProfileDefault',
                 meta: {
-                    title: t('views.profile.label_profile'),
-                    icon: 'user',
-                    affix: true,
+                    title: 'Mon Profil',
+                    icon: 'mdi:account',
                 },
             },
         ],
         meta: { order: 99 },
     },
+
+    // ═══════════════════════════════════════════════════════════
+    // ERROR PAGES
+    // ═══════════════════════════════════════════════════════════
     {
         name: 'ErrorPage',
         path: '/error-page',
         component: Layout,
         redirect: '/error-page/404',
+        isHidden: true,
         meta: {
-            title: t('views.errors.label_error'),
+            title: 'Erreurs',
             icon: 'mdi:alert-circle-outline',
             order: 99,
         },
@@ -71,37 +88,25 @@ export const basicRoutes = [
                 name: 'ERROR-401',
                 path: '401',
                 component: () => import('@/views/error-page/401.vue'),
-                meta: {
-                    title: '401',
-                    icon: 'material-symbols:authenticator',
-                },
+                meta: { title: '401' },
             },
             {
                 name: 'ERROR-403',
                 path: '403',
                 component: () => import('@/views/error-page/403.vue'),
-                meta: {
-                    title: '403',
-                    icon: 'solar:forbidden-circle-line-duotone',
-                },
+                meta: { title: '403' },
             },
             {
                 name: 'ERROR-404',
                 path: '404',
                 component: () => import('@/views/error-page/404.vue'),
-                meta: {
-                    title: '404',
-                    icon: 'tabler:error-404',
-                },
+                meta: { title: '404' },
             },
             {
                 name: 'ERROR-500',
                 path: '500',
                 component: () => import('@/views/error-page/500.vue'),
-                meta: {
-                    title: '500',
-                    icon: 'clarity:rack-server-outline-alerted',
-                },
+                meta: { title: '500' },
             },
         ],
     },
@@ -123,138 +128,39 @@ export const basicRoutes = [
         component: () => import('@/views/login/index.vue'),
         isHidden: true,
         meta: {
-            title: 'Login page',
+            title: 'Connexion',
         },
     },
+
+    // ═══════════════════════════════════════════════════════════
+    // SYSTEM / SETTINGS
+    // ═══════════════════════════════════════════════════════════
     {
-        name: 'Multi-Site',
-        path: '/multi-site',
+        name: 'Système',
+        path: '/system',
         component: Layout,
         meta: {
-            title: 'Multi-Site Management',
-            icon: 'mdi:web-check',
-            order: 1,
-        },
-        children: [
-            {
-                path: 'dashboard',
-                name: 'Multi-Site-Dashboard',
-                component: () => import('@/views/dashboard/index.vue'),
-                meta: {
-                    title: 'Website Status',
-                    icon: 'mdi:monitor-dashboard',
-                    affix: true,
-                },
-            },
-        ],
-    },
-    {
-        name: 'Website A',
-        path: '/website-a',
-        component: Layout,
-        meta: {
-            title: 'Website A',
-            icon: 'mdi:alpha-a-box',
-            order: 2,
+            title: 'Système',
+            icon: 'mdi:cog',
+            order: 20,
         },
         children: [
             {
                 path: 'users',
-                name: 'WebsiteA-Users',
-                component: () => import('@/views/website-a/users/index.vue'),
-                meta: {
-                    title: 'Users',
-                    icon: 'mdi:account-group',
-                },
-            },
-        ],
-    },
-    {
-        name: 'Website B',
-        path: '/website-b',
-        component: Layout,
-        meta: {
-            title: 'Website B',
-            icon: 'mdi:alpha-b-box',
-            order: 3,
-        },
-        children: [
-            {
-                path: 'products',
-                name: 'WebsiteB-Products',
-                component: () => import('@/views/website-b/products/index.vue'),
-                meta: {
-                    title: 'Products',
-                    icon: 'mdi:package-variant',
-                },
-            },
-        ],
-    },
-    // ═══════════════════════════════════════════════════════════
-    // SYSTEM / DEVELOPER TOOLS
-    // ═══════════════════════════════════════════════════════════
-    {
-        name: 'System',
-        path: '/system',
-        component: Layout,
-        meta: {
-            title: 'System',
-            icon: 'mdi:cog',
-            order: 10,
-        },
-        children: [
-            {
-                path: 'component-tree',
-                name: 'ComponentTree',
-                component: () => import('@/views/system/component-tree/index.vue'),
-                meta: {
-                    title: 'Component Tree',
-                    icon: 'mdi:file-tree',
-                },
-            },
-            {
-                path: 'user',
-                name: 'System-User',
+                name: 'System-Users',
                 component: () => import('@/views/system/user/index.vue'),
                 meta: {
-                    title: 'Users',
+                    title: 'Utilisateurs',
                     icon: 'mdi:account-multiple',
                 },
             },
             {
-                path: 'role',
-                name: 'System-Role',
+                path: 'roles',
+                name: 'System-Roles',
                 component: () => import('@/views/system/role/index.vue'),
                 meta: {
-                    title: 'Roles',
+                    title: 'Rôles',
                     icon: 'mdi:shield-account',
-                },
-            },
-            {
-                path: 'menu',
-                name: 'System-Menu',
-                component: () => import('@/views/system/menu/index.vue'),
-                meta: {
-                    title: 'Menus',
-                    icon: 'mdi:menu',
-                },
-            },
-            {
-                path: 'dept',
-                name: 'System-Dept',
-                component: () => import('@/views/system/dept/index.vue'),
-                meta: {
-                    title: 'Departments',
-                    icon: 'mdi:office-building',
-                },
-            },
-            {
-                path: 'api',
-                name: 'System-Api',
-                component: () => import('@/views/system/api/index.vue'),
-                meta: {
-                    title: 'API',
-                    icon: 'mdi:api',
                 },
             },
             {
@@ -262,7 +168,7 @@ export const basicRoutes = [
                 name: 'System-AuditLog',
                 component: () => import('@/views/system/auditlog/index.vue'),
                 meta: {
-                    title: 'Audit Log',
+                    title: 'Journal d\'audit',
                     icon: 'mdi:history',
                 },
             },
@@ -289,7 +195,6 @@ Object.keys(modules).forEach((key) => {
     asyncRoutes.push(modules[key].default)
 })
 
-// Load views each under module index.vue file
 const vueModules = import.meta.glob('@/views/**/index.vue')
 
 export { asyncRoutes, vueModules }
