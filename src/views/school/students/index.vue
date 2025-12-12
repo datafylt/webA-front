@@ -154,7 +154,7 @@
 
       <template #footer>
         <n-space justify="end">
-          <n-button @click="showModal = false">Annuler</n-button>
+          <n-button @click="handleCloseModal">Annuler</n-button>
           <n-button type="primary" :loading="saving" @click="handleSave">
             {{ isEdit ? 'Modifier' : 'Créer' }}
           </n-button>
@@ -165,11 +165,17 @@
 </template>
 
 <script setup>
-import { h, ref, reactive, computed, onMounted } from 'vue'
+import { h, ref, reactive, computed, onMounted, watch } from 'vue'
 import { NButton, NTag, NSpace, NPopconfirm, useMessage } from 'naive-ui'
+import { useRoute, useRouter } from 'vue-router'
 import { request } from '@/utils'
 
 const message = useMessage()
+const route = useRoute()
+const router = useRouter()
+
+// Track if we came from a session
+const returnToSessionId = ref(null)
 
 const loading = ref(false)
 const saving = ref(false)
@@ -373,8 +379,18 @@ function handleFilter() {
 
 function handleCreate() {
   isEdit.value = false
+  returnToSessionId.value = null  // Clear return when creating new
   Object.assign(formData, defaultFormData)
   showModal.value = true
+}
+
+function handleCloseModal() {
+  showModal.value = false
+  // Return to session if we came from there
+  if (returnToSessionId.value) {
+    router.push(`/school/sessions?open_enrollments=${returnToSessionId.value}`)
+    returnToSessionId.value = null
+  }
 }
 
 function handleEdit(row) {
@@ -447,6 +463,11 @@ async function handleSave() {
       message.success(isEdit.value ? 'Étudiant modifié avec succès' : 'Étudiant créé avec succès')
       showModal.value = false
       loadData()
+      // Return to session if we came from there
+      if (returnToSessionId.value) {
+        router.push(`/school/sessions?open_enrollments=${returnToSessionId.value}`)
+        returnToSessionId.value = null
+      }
     } else {
       message.error(res.msg || 'Erreur lors de la sauvegarde')
     }
@@ -464,7 +485,29 @@ async function handleSave() {
 
 onMounted(() => {
   loadData()
+
+  // Check if we need to open a student from URL
+  if (route.query.id) {
+    openStudentById(parseInt(route.query.id))
+    // Track if we came from a session
+    if (route.query.from_session) {
+      returnToSessionId.value = parseInt(route.query.from_session)
+    }
+  }
 })
+
+async function openStudentById(studentId) {
+  try {
+    const res = await request.get('/student/get', { params: { student_id: studentId } })
+    if (res.code === 200) {
+      handleEdit(res.data)
+      // Clear the URL param to avoid reopening on next visit
+      window.history.replaceState({}, '', '/school/students')
+    }
+  } catch (error) {
+    console.error('Error loading student:', error)
+  }
+}
 </script>
 
 <style scoped>

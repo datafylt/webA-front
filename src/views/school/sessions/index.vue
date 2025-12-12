@@ -10,8 +10,8 @@
     <!-- Filters -->
     <n-card size="small" class="mb-4">
       <n-space>
-        <n-input 
-          v-model:value="filters.search" 
+        <n-input
+          v-model:value="filters.search"
           placeholder="Rechercher..."
           clearable
           style="width: 200px"
@@ -22,7 +22,7 @@
             <TheIcon icon="mdi:magnify" :size="16" />
           </template>
         </n-input>
-        
+
         <n-select
           v-model:value="filters.program_id"
           placeholder="Programme"
@@ -31,7 +31,7 @@
           :options="programOptions"
           @update:value="handleFilter"
         />
-        
+
         <n-select
           v-model:value="filters.status"
           placeholder="Statut"
@@ -87,20 +87,20 @@
         <n-form-item label="Titre" path="title">
           <n-input v-model:value="formData.title" placeholder="Titre de la session" />
         </n-form-item>
-        
+
         <n-form-item label="Description" path="description">
-          <n-input 
-            v-model:value="formData.description" 
+          <n-input
+            v-model:value="formData.description"
             type="textarea"
             placeholder="Description/notes"
             :rows="2"
           />
         </n-form-item>
-        
+
         <n-grid :cols="2" :x-gap="16">
           <n-grid-item>
             <n-form-item label="Date début" path="start_date">
-              <n-date-picker 
+              <n-date-picker
                 v-model:formatted-value="formData.start_date"
                 type="date"
                 value-format="yyyy-MM-dd"
@@ -110,7 +110,7 @@
           </n-grid-item>
           <n-grid-item>
             <n-form-item label="Date fin" path="end_date">
-              <n-date-picker 
+              <n-date-picker
                 v-model:formatted-value="formData.end_date"
                 type="date"
                 value-format="yyyy-MM-dd"
@@ -123,7 +123,7 @@
         <n-grid :cols="2" :x-gap="16">
           <n-grid-item>
             <n-form-item label="Heure début" path="start_time">
-              <n-time-picker 
+              <n-time-picker
                 v-model:formatted-value="formData.start_time"
                 format="HH:mm"
                 value-format="HH:mm:ss"
@@ -133,7 +133,7 @@
           </n-grid-item>
           <n-grid-item>
             <n-form-item label="Heure fin" path="end_time">
-              <n-time-picker 
+              <n-time-picker
                 v-model:formatted-value="formData.end_time"
                 format="HH:mm"
                 value-format="HH:mm:ss"
@@ -180,7 +180,7 @@
           <n-select v-model:value="formData.status" :options="statusOptions" />
         </n-form-item>
       </n-form>
-      
+
       <template #footer>
         <n-space justify="end">
           <n-button @click="showModal = false">Annuler</n-button>
@@ -198,6 +198,27 @@
       :title="'Inscriptions - ' + selectedSession?.title"
       style="width: 800px"
     >
+      <!-- Add student form -->
+      <n-card size="small" class="mb-4">
+        <n-space>
+          <n-select
+            v-model:value="newEnrollment.student_id"
+            placeholder="Sélectionner un étudiant..."
+            filterable
+            style="width: 300px"
+            :options="studentOptions"
+            :loading="loadingStudents"
+          />
+          <n-button type="primary" :disabled="!newEnrollment.student_id" @click="handleEnrollStudent">
+            <TheIcon icon="mdi:account-plus" :size="18" class="mr-4" />
+            Inscrire
+          </n-button>
+        </n-space>
+        <n-text v-if="selectedSession" depth="3" style="display: block; margin-top: 8px">
+          Places disponibles: {{ selectedSession.available_spots }} / {{ selectedSession.max_participants }}
+        </n-text>
+      </n-card>
+
       <n-data-table
         :columns="enrollmentColumns"
         :data="enrollments"
@@ -212,9 +233,12 @@
 <script setup>
 import { h, ref, reactive, computed, onMounted } from 'vue'
 import { NButton, NTag, NSpace, NPopconfirm, useMessage } from 'naive-ui'
+import { useRouter, useRoute } from 'vue-router'
 import { request } from '@/utils'
 
 const message = useMessage()
+const router = useRouter()
+const route = useRoute()
 
 const loading = ref(false)
 const saving = ref(false)
@@ -229,6 +253,11 @@ const selectedSession = ref(null)
 const sessions = ref([])
 const enrollments = ref([])
 const programOptions = ref([])
+const studentOptions = ref([])
+const loadingStudents = ref(false)
+const newEnrollment = reactive({
+  student_id: null,
+})
 
 // Filters
 const filters = reactive({
@@ -362,22 +391,44 @@ const columns = [
 ]
 
 const enrollmentColumns = [
-  { title: 'Étudiant', key: 'student_name' },
+  {
+    title: 'Étudiant',
+    key: 'student_name',
+    render(row) {
+      return h('a', {
+        style: 'color: #18a058; cursor: pointer; text-decoration: none;',
+        onClick: () => handleGoToStudent(row.student_id)
+      }, row.student_name)
+    },
+  },
   { title: 'Email', key: 'student_email' },
   {
     title: 'Statut',
     key: 'status',
     render(row) {
+      const labels = { enrolled: 'Inscrit', completed: 'Complété', cancelled: 'Annulé', no_show: 'Absent' }
       const s = { enrolled: 'info', completed: 'success', cancelled: 'error', no_show: 'warning' }
-      return h(NTag, { type: s[row.status] || 'default', size: 'small' }, { default: () => row.status })
+      return h(NTag, { type: s[row.status] || 'default', size: 'small' }, { default: () => labels[row.status] || row.status })
     },
   },
   {
     title: 'Paiement',
     key: 'payment_status',
     render(row) {
+      const labels = { pending: 'En attente', paid: 'Payé', refunded: 'Remboursé' }
       const p = { pending: 'warning', paid: 'success', refunded: 'error' }
-      return h(NTag, { type: p[row.payment_status] || 'default', size: 'small' }, { default: () => row.payment_status })
+      return h(NTag, { type: p[row.payment_status] || 'default', size: 'small' }, { default: () => labels[row.payment_status] || row.payment_status })
+    },
+  },
+  {
+    title: 'Actions',
+    key: 'actions',
+    width: 100,
+    render(row) {
+      return h(NPopconfirm, { onPositiveClick: () => handleRemoveEnrollment(row) }, {
+        trigger: () => h(NButton, { size: 'small', quaternary: true, type: 'error' }, { default: () => 'Retirer' }),
+        default: () => 'Retirer cet étudiant?',
+      })
     },
   },
 ]
@@ -422,14 +473,14 @@ async function loadData() {
       page: pagination.page,
       page_size: pagination.pageSize,
     }
-    
+
     if (filters.search) params.search = filters.search
     if (filters.program_id) params.program_id = filters.program_id
     if (filters.status) params.status = filters.status
     if (filters.upcoming) params.upcoming = true
 
     const res = await request.get('/session/list', { params })
-    
+
     if (res.code === 200) {
       sessions.value = res.data
       pagination.itemCount = res.total
@@ -496,7 +547,7 @@ function handleEdit(row) {
 async function handleDelete(row) {
   try {
     const res = await request.delete('/session/delete', { params: { session_id: row.id } })
-    
+
     if (res.code === 200) {
       message.success('Session supprimée avec succès')
       loadData()
@@ -513,7 +564,7 @@ async function handleSave() {
   try {
     await formRef.value?.validate()
     saving.value = true
-    
+
     const data = {
       program_id: formData.program_id,
       title: formData.title,
@@ -562,7 +613,11 @@ async function handleViewEnrollments(row) {
   selectedSession.value = row
   showEnrollmentsModal.value = true
   loadingEnrollments.value = true
-  
+  newEnrollment.student_id = null
+
+  // Load students for dropdown
+  await loadStudents()
+
   try {
     const res = await request.get('/session/enrollments', { params: { session_id: row.id } })
     if (res.code === 200) {
@@ -575,9 +630,96 @@ async function handleViewEnrollments(row) {
   }
 }
 
-onMounted(() => {
-  loadPrograms()
-  loadData()
+async function loadStudents() {
+  loadingStudents.value = true
+  try {
+    const res = await request.get('/student/list', { params: { page: 1, page_size: 100, status: 'active' } })
+    if (res.code === 200) {
+      studentOptions.value = res.data.map(s => ({
+        label: `${s.first_name} ${s.last_name} (${s.email})`,
+        value: s.id,
+      }))
+    }
+  } catch (error) {
+    console.error('Error loading students:', error)
+  } finally {
+    loadingStudents.value = false
+  }
+}
+
+async function handleEnrollStudent() {
+  if (!newEnrollment.student_id || !selectedSession.value) return
+
+  try {
+    const res = await request.post('/session/enroll', {
+      session_id: selectedSession.value.id,
+      student_id: newEnrollment.student_id,
+    })
+
+    if (res.code === 200) {
+      message.success('Étudiant inscrit avec succès')
+      newEnrollment.student_id = null
+      // Reload enrollments
+      const enrollRes = await request.get('/session/enrollments', { params: { session_id: selectedSession.value.id } })
+      if (enrollRes.code === 200) {
+        enrollments.value = enrollRes.data
+      }
+      // Update available spots
+      selectedSession.value.enrolled_count++
+      selectedSession.value.available_spots--
+      loadData()
+    } else {
+      message.error(res.msg || 'Erreur lors de l\'inscription')
+    }
+  } catch (error) {
+    console.error('Error enrolling student:', error)
+    message.error('Erreur de connexion au serveur')
+  }
+}
+
+async function handleRemoveEnrollment(row) {
+  try {
+    const res = await request.delete('/session/enrollment/delete', { params: { enrollment_id: row.id } })
+
+    if (res.code === 200) {
+      message.success('Inscription supprimée')
+      // Reload enrollments
+      const enrollRes = await request.get('/session/enrollments', { params: { session_id: selectedSession.value.id } })
+      if (enrollRes.code === 200) {
+        enrollments.value = enrollRes.data
+      }
+      // Update available spots
+      selectedSession.value.enrolled_count--
+      selectedSession.value.available_spots++
+      loadData()
+    } else {
+      message.error(res.msg || 'Erreur lors de la suppression')
+    }
+  } catch (error) {
+    console.error('Error removing enrollment:', error)
+    message.error('Erreur de connexion au serveur')
+  }
+}
+
+function handleGoToStudent(studentId) {
+  showEnrollmentsModal.value = false
+  router.push(`/school/students?id=${studentId}&from_session=${selectedSession.value.id}`)
+}
+
+onMounted(async () => {
+  await loadPrograms()
+  await loadData()
+
+  // Check if we need to reopen enrollments modal
+  if (route.query.open_enrollments) {
+    const sessionId = parseInt(route.query.open_enrollments)
+    const session = sessions.value.find(s => s.id === sessionId)
+    if (session) {
+      handleViewEnrollments(session)
+      // Clear URL param
+      window.history.replaceState({}, '', '/school/sessions')
+    }
+  }
 })
 </script>
 
