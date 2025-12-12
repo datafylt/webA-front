@@ -98,7 +98,8 @@ async function handleLogin() {
       Reflect.deleteProperty(query, 'redirect')
       router.push({ path, query })
     } else {
-      router.push('/')
+      // Redirect to dashboard after login
+      router.push('/workbench')
     }
   } catch (e) {
     console.error('login error', e.error)

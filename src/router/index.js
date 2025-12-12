@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { setupRouterGuard } from './guard'
-import { basicRoutes, NOT_FOUND_ROUTE } from './routes'
+import { basicRoutes, NOT_FOUND_ROUTE, asyncRoutes } from './routes'
 
 // Create router instance
 export const router = createRouter({
@@ -29,6 +29,23 @@ export function resetRouter() {
   basicRoutes.forEach((route) => {
     router.addRoute(route)
   })
+}
+
+// Add dynamic routes after login
+export async function addDynamicRoutes() {
+  // Add async routes (if any)
+  asyncRoutes.forEach((route) => {
+    if (!router.hasRoute(route.name)) {
+      router.addRoute(route)
+    }
+  })
+
+  // Ensure 404 route is at the end
+  if (!router.hasRoute('NotFound')) {
+    router.addRoute(NOT_FOUND_ROUTE)
+  }
+
+  return Promise.resolve()
 }
 
 // Setup function called from main.js

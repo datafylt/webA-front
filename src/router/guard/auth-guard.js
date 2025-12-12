@@ -5,7 +5,7 @@ const WHITE_LIST = ['/login', '/404']
 
 // Public website paths (Formation Électro public pages)
 const PUBLIC_PATHS = [
-  '/public',        // All public routes start with /public
+  '/',             // Home page
   '/about',
   '/programs',
   '/instructors',
@@ -14,11 +14,21 @@ const PUBLIC_PATHS = [
 
 // Helper function to check if path is public
 const isPublicPath = (path) => {
-  return PUBLIC_PATHS.some(p => path === p || path.startsWith(p + '/'))
+  // Exact match for root
+  if (path === '/') return true
+  // Check other public paths
+  return PUBLIC_PATHS.some(p => p !== '/' && (path === p || path.startsWith(p + '/')))
 }
 
 export function createAuthGuard(router) {
   router.beforeEach(async (to) => {
+    // ═══════════════════════════════════════════════════════════
+    // LOGIN PAGE - Always accessible
+    // ═══════════════════════════════════════════════════════════
+    if (to.path === '/login') {
+      return true
+    }
+
     // ═══════════════════════════════════════════════════════════
     // PUBLIC WEBSITE ROUTES - No authentication required
     // ═══════════════════════════════════════════════════════════
@@ -31,18 +41,17 @@ export function createAuthGuard(router) {
     }
 
     // ═══════════════════════════════════════════════════════════
-    // EXISTING AUTH LOGIC
+    // ADMIN ROUTES - Authentication required
     // ═══════════════════════════════════════════════════════════
     const token = getToken()
 
-    /** No token case */
+    /** No token case - redirect to login */
     if (isNullOrWhitespace(token)) {
       if (WHITE_LIST.includes(to.path)) return true
-      return { path: 'login', query: { ...to.query, redirect: to.path } }
+      return { path: '/login', query: { ...to.query, redirect: to.path } }
     }
 
-    /** Has token case */
-    if (to.path === '/login') return { path: '/' }
+    /** Has token case - allow access */
     return true
   })
 }
