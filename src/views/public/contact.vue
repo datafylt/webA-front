@@ -85,7 +85,7 @@
                 <div class="fe-contact-icon">📍</div>
                 <div class="fe-contact-text">
                   <h5>Adresse</h5>
-                  <p>255 Boulevard Curé-Labelle, Sainte-Rose,<br>Laval, QC H7L-2R9, Bureau 05</p>
+                  <p>4030 Boulevard de la Côte-Vertu, Saint-Laurent, QC H4R 1V4, Bureau 05</p>
                 </div>
               </li>
               <li>

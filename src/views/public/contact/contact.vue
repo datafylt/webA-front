@@ -85,7 +85,7 @@
                 <div class="fe-contact-icon">📍</div>
                 <div class="fe-contact-text">
                   <h5>Adresse</h5>
-                  <p>255 Boulevard Curé-Labelle, Sainte-Rose,<br>Laval, QC H7L-2R9, Bureau 05</p>
+                  <p>4030 Boulevard de la Côte-Vertu, Saint-Laurent, QC H4R 1V4, Bureau 05</p>
                 </div>
               </li>
               <li>
@@ -119,11 +119,7 @@
     <section class="map-section">
       <div class="fe-container">
         <div class="fe-map">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2792.8661882225775!2d-73.78451368444144!3d45.62281797910291!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc923b55e7f3d0b%3A0x2c8d7c21b7f7e8a9!2s255%20Bd%20Cur%C3%A9-Labelle%2C%20Laval%2C%20QC%20H7L%202Z9!5e0!3m2!1sen!2sca!4v1629390374659!5m2!1sen!2sca"
-            allowfullscreen=""
-            loading="lazy"
-          ></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sca!4v1765714224174!5m2!1sen!2sca!6m8!1m7!1sF83YVRY85DkQ9QtbeU8EeQ!2m2!1d45.49021950677504!2d-73.71201116423835!3f95.62472654195415!4f3.336125693412427!5f0.7820865974627469" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </section>
