@@ -60,11 +60,11 @@ export const publicRoutes = [
       },
       {
         path: ':id',
-        name: 'ProgramDetail',
+        name: 'PublicProgramDetail',
         component: () => import('@/views/public/programs/program-detail.vue'),
-        meta: { 
+        meta: {
           title: 'Programme - Formation Électro Inc',
-          public: true 
+          public: true
         }
       }
     ],

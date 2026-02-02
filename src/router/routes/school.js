@@ -83,7 +83,7 @@ export const schoolRoutes = [
       },
       {
         path: ':id',
-        name: 'ProgramDetail',
+        name: 'SchoolProgramDetail',
         component: () => import('@/views/school/programs/detail.vue'),
         meta: { title: 'Détail programme' },
         isHidden: true,

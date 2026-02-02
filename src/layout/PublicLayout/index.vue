@@ -146,7 +146,7 @@
               </li>
               <li>
                 <span class="contact-icon">📍</span>
-                <span>4030 Boulevard de la Côte-Vertu, Saint-Laurent, QC H4R 1V4, Bureau 05</span>
+                <span>4030 Boulevard de la Côte-Vertu, Saint-Laurent, QC H4R 1V4, bureau 104</span>
               </li>
               <li>
                 <span class="contact-icon">📞</span>
