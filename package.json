@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "start": "serve dist -s -p $PORT",
     "preview": "vite preview",
     "lint": "eslint --ext .js,.vue .",
     "lint:fix": "eslint --fix --ext .js,.vue .",
@@ -27,6 +28,7 @@
     "pinia": "^2.1.6",
     "rollup-plugin-visualizer": "^5.9.2",
     "sass": "^1.65.1",
+    "serve": "^14.2.0",
     "typescript": "^5.1.6",
     "unocss": "^0.55.0",
     "unplugin-auto-import": "^0.16.6",
