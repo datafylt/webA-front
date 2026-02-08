@@ -7,7 +7,7 @@
         </div>
         <div class="fe-breadcrumb-nav">
           <ul>
-            <li v-for="(crumb, index) in breadcrumbs" :key="index">
+            <li v-for="(crumb, index) in computedBreadcrumbs" :key="index">
               <router-link v-if="crumb.to" :to="crumb.to">{{ crumb.label }}</router-link>
               <span v-else>{{ crumb.label }}</span>
             </li>
@@ -21,6 +21,9 @@
 
 <script setup>
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const props = defineProps({
   title: {
@@ -29,9 +32,15 @@ const props = defineProps({
   },
   breadcrumbs: {
     type: Array,
-    default: () => [{ label: 'Accueil', to: '/' }]
+    default: () => []
   }
 })
+
+// Default breadcrumb with translated home
+const defaultBreadcrumbs = computed(() => [{ label: t('lang') === 'Français' ? 'Accueil' : 'Home', to: '/' }])
+
+// Use provided breadcrumbs or default
+const computedBreadcrumbs = computed(() => props.breadcrumbs.length > 0 ? props.breadcrumbs : defaultBreadcrumbs.value)
 
 // Strip HTML tags for breadcrumb nav text
 const plainTitle = computed(() => props.title.replace(/<[^>]*>/g, ''))

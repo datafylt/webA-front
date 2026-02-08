@@ -1,7 +1,9 @@
-import * as en from './en.json'
-import * as cn from './cn.json'
+import en from './en.json'
+import cn from './cn.json'
+import fr from './fr.json'
 
 export default {
   en,
   cn,
+  fr,
 }

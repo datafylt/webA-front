@@ -54,14 +54,14 @@
             <nav class="main-nav" :class="{ 'is-open': mobileMenuOpen }">
               <ul class="nav-menu">
                 <li :class="{ active: isActive('/') }">
-                  <router-link to="/" @click="closeMobileMenu">Accueil</router-link>
+                  <router-link to="/" @click="closeMobileMenu">{{ t('public.navigation.home') }}</router-link>
                 </li>
                 <li :class="{ active: isActive('/about') }">
-                  <router-link to="/about" @click="closeMobileMenu">À propos de nous</router-link>
+                  <router-link to="/about" @click="closeMobileMenu">{{ t('public.navigation.about') }}</router-link>
                 </li>
                 <li class="has-dropdown" :class="{ active: isActive('/programs') }">
                   <a href="javascript:void(0)" @click.prevent="toggleDropdown">
-                    Programmes <span class="dropdown-arrow">▼</span>
+                    {{ t('public.navigation.programs') }} <span class="dropdown-arrow">▼</span>
                   </a>
                   <ul class="dropdown-menu" :class="{ show: dropdownOpen }">
                     <li><router-link to="/programs/1" @click="closeMobileMenu">Compagnon Electricien Licence C</router-link></li>
@@ -73,13 +73,13 @@
                   </ul>
                 </li>
                 <li :class="{ active: isActive('/instructors') }">
-                  <router-link to="/instructors" @click="closeMobileMenu">Nos instructeurs</router-link>
+                  <router-link to="/instructors" @click="closeMobileMenu">{{ t('public.navigation.instructors') }}</router-link>
                 </li>
                 <li :class="{ active: isActive('/contact') }">
-                  <router-link to="/contact" @click="closeMobileMenu">Contactez-nous</router-link>
+                  <router-link to="/contact" @click="closeMobileMenu">{{ t('public.navigation.contact') }}</router-link>
                 </li>
                 <li class="nav-login">
-                  <a href="/login" @click.prevent="goToLogin">Connexion</a>
+                  <a href="/login" @click.prevent="goToLogin">{{ t('public.navigation.login') }}</a>
                 </li>
               </ul>
             </nav>
@@ -123,11 +123,11 @@
           <div class="footer-section">
             <h4>Extra Links</h4>
             <ul class="footer-links">
-              <li><router-link to="/">Accueil</router-link></li>
-              <li><router-link to="/about">À propos de nous</router-link></li>
-              <li><router-link to="/programs/1">Programmes</router-link></li>
-              <li><router-link to="/instructors">Nos instructeurs</router-link></li>
-              <li><router-link to="/contact">Contactez-nous</router-link></li>
+              <li><router-link to="/">{{ t('public.navigation.home') }}</router-link></li>
+              <li><router-link to="/about">{{ t('public.navigation.about') }}</router-link></li>
+              <li><router-link to="/programs/1">{{ t('public.navigation.programs') }}</router-link></li>
+              <li><router-link to="/instructors">{{ t('public.navigation.instructors') }}</router-link></li>
+              <li><router-link to="/contact">{{ t('public.navigation.contact') }}</router-link></li>
               <li>
                 <a href="http://www.emploiquebec.gouv.qc.ca/fileadmin/fichiers/pdf/Guide-qualif/electricite_fiche.pdf#page=9" target="_blank">
                   Emploi Québec
@@ -180,9 +180,11 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 
 const route = useRoute()
 const router = useRouter()
+const { t } = useI18n()
 
 // State
 const loading = ref(true)

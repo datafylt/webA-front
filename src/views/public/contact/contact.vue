@@ -1,7 +1,10 @@
 <template>
   <div class="contact-page fe-page">
+    <!-- Language Switcher -->
+    <LanguageSwitcher />
+
     <!-- Breadcrumb -->
-    <BreadcrumbSection title="Contactez-nous" />
+    <BreadcrumbSection :title="$t('public.contact.breadcrumb')" />
 
     <!-- Contact Content -->
     <section class="contact-section">
@@ -9,104 +12,104 @@
         <div class="contact-grid">
           <!-- Contact Form -->
           <div class="contact-form-wrapper">
-            <h2>Envoyez-nous un message</h2>
-            
+            <h2>{{ $t('public.contact.form_title') }}</h2>
+
             <div v-if="submitStatus === 'success'" class="fe-alert fe-alert-success">
-              Votre message a été envoyé avec succès! Nous vous répondrons bientôt.
+              {{ $t('public.contact.success_message') }}
             </div>
-            
+
             <div v-if="submitStatus === 'error'" class="fe-alert fe-alert-error">
-              Une erreur s'est produite. Veuillez réessayer.
+              {{ $t('public.contact.error_message') }}
             </div>
 
             <form @submit.prevent="handleSubmit" class="contact-form">
               <div class="form-row">
                 <div class="fe-form-group">
-                  <input 
+                  <input
                     v-model="form.name"
-                    type="text" 
-                    class="fe-form-control" 
-                    placeholder="Votre nom *"
+                    type="text"
+                    class="fe-form-control"
+                    :placeholder="$t('public.contact.name_placeholder')"
                     required
                   />
                 </div>
                 <div class="fe-form-group">
-                  <input 
+                  <input
                     v-model="form.email"
-                    type="email" 
-                    class="fe-form-control" 
-                    placeholder="Votre courriel *"
+                    type="email"
+                    class="fe-form-control"
+                    :placeholder="$t('public.contact.email_placeholder')"
                     required
                   />
                 </div>
               </div>
-              
+
               <div class="fe-form-group">
-                <input 
+                <input
                   v-model="form.phone"
-                  type="tel" 
-                  class="fe-form-control" 
-                  placeholder="Votre téléphone"
+                  type="tel"
+                  class="fe-form-control"
+                  :placeholder="$t('public.contact.phone_placeholder')"
                 />
               </div>
-              
+
               <div class="fe-form-group">
-                <input 
+                <input
                   v-model="form.subject"
-                  type="text" 
-                  class="fe-form-control" 
-                  placeholder="Sujet *"
+                  type="text"
+                  class="fe-form-control"
+                  :placeholder="$t('public.contact.subject_placeholder')"
                   required
                 />
               </div>
-              
+
               <div class="fe-form-group">
-                <textarea 
+                <textarea
                   v-model="form.message"
-                  class="fe-form-control" 
-                  placeholder="Votre message *"
+                  class="fe-form-control"
+                  :placeholder="$t('public.contact.message_placeholder')"
                   rows="5"
                   required
                 ></textarea>
               </div>
-              
+
               <button type="submit" class="fe-btn fe-btn-primary" :disabled="isSubmitting">
-                {{ isSubmitting ? 'Envoi en cours...' : 'Envoyer le message' }}
+                {{ isSubmitting ? $t('public.contact.submitting_button') : $t('public.contact.submit_button') }}
               </button>
             </form>
           </div>
 
           <!-- Contact Info -->
           <div class="contact-info-wrapper">
-            <h2>Informations de contact</h2>
-            
+            <h2>{{ $t('public.contact.info_title') }}</h2>
+
             <ul class="fe-contact-info">
               <li>
                 <div class="fe-contact-icon">📍</div>
                 <div class="fe-contact-text">
-                  <h5>Adresse</h5>
-                  <p>4030 Boulevard de la Côte-Vertu, Saint-Laurent, QC H4R 1V4, bureau 104</p>
+                  <h5>{{ $t('public.contact.address_label') }}</h5>
+                  <p>{{ $t('public.contact.address') }}</p>
                 </div>
               </li>
               <li>
                 <div class="fe-contact-icon">📞</div>
                 <div class="fe-contact-text">
-                  <h5>Téléphone</h5>
+                  <h5>{{ $t('public.contact.phone_label') }}</h5>
                   <p><a href="tel:+15146054275">+1-514-605-4275</a></p>
                 </div>
               </li>
               <li>
                 <div class="fe-contact-icon">✉️</div>
                 <div class="fe-contact-text">
-                  <h5>Courriel</h5>
+                  <h5>{{ $t('public.contact.email_label') }}</h5>
                   <p><a href="mailto:info@formationelectro.com">info@formationelectro.com</a></p>
                 </div>
               </li>
               <li>
                 <div class="fe-contact-icon">🕐</div>
                 <div class="fe-contact-text">
-                  <h5>Heures d'ouverture</h5>
-                  <p>Lun - Sam: 9:00 - 18:00<br>Dimanche: Fermé</p>
+                  <h5>{{ $t('public.contact.hours_label') }}</h5>
+                  <p v-html="$t('public.contact.hours')"></p>
                 </div>
               </li>
             </ul>
@@ -128,7 +131,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { BreadcrumbSection } from '@/components/public'
+import { BreadcrumbSection, LanguageSwitcher } from '@/components/public'
 
 const form = reactive({
   name: '',
@@ -144,7 +147,7 @@ const submitStatus = ref(null)
 const handleSubmit = async () => {
   isSubmitting.value = true
   submitStatus.value = null
-  
+
   try {
     await new Promise(resolve => setTimeout(resolve, 1500))
     Object.keys(form).forEach(key => form[key] = '')

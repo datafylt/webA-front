@@ -1,13 +1,16 @@
 <template>
   <div class="programs-page fe-page">
+    <!-- Language Switcher -->
+    <LanguageSwitcher />
+
     <!-- Breadcrumb -->
-    <BreadcrumbSection title="Nos Programmes" />
+    <BreadcrumbSection :title="$t('public.programs.breadcrumb')" />
 
     <!-- Programs Grid -->
     <section class="programs-section">
       <div class="fe-container">
         <div class="fe-section-title">
-          <h2>Programmes de <span>Formation</span></h2>
+          <h2>{{ $t('public.programs.section_title') }} <span>{{ $t('public.programs.section_title_span') }}</span></h2>
           <div class="fe-title-border">
             <span class="fe-bulb-icon">💡</span>
           </div>
@@ -21,16 +24,16 @@
             class="program-card"
           >
             <div class="program-icon">{{ program.emoji }}</div>
-            <h3>{{ program.title }}</h3>
-            <p>{{ program.description }}</p>
-            <span class="program-link">En savoir plus →</span>
+            <h3>{{ $t(`public.programs.list.${program.id}.title`) }}</h3>
+            <p>{{ $t(`public.programs.list.${program.id}.description`) }}</p>
+            <span class="program-link">{{ $t('public.programs.learn_more') }}</span>
           </router-link>
         </div>
       </div>
     </section>
 
     <!-- Call to Action -->
-    <CtaSection :title="ctaTitle" />
+    <CtaSection :title="$t('public.programs.cta_title')" />
 
     <!-- Team Section -->
     <TeamSection />
@@ -42,47 +45,15 @@
 
 <script setup>
 import { ref } from 'vue'
-import { BreadcrumbSection, CtaSection, TeamSection, TestimonialsSection } from '@/components/public'
-
-const ctaTitle = 'Formation en vue de l\'obtention de la qualification de compagnon électricien <em>(Licence C)</em>'
+import { BreadcrumbSection, CtaSection, LanguageSwitcher, TeamSection, TestimonialsSection } from '@/components/public'
 
 const programs = ref([
-  {
-    id: 1,
-    title: 'Compagnon Électricien Licence C',
-    description: 'Formation complète pour obtenir la qualification de compagnon électricien hors construction.',
-    emoji: '⚡'
-  },
-  {
-    id: 2,
-    title: 'Connexions restreintes (RCA)',
-    description: "Formation pour le certificat restreint en connexion d'appareillage électrique.",
-    emoji: '🔌'
-  },
-  {
-    id: 3,
-    title: 'Constructeur propriétaire (RBQ)',
-    description: 'Préparation aux examens de constructeur propriétaire de la Régie du bâtiment.',
-    emoji: '🏗️'
-  },
-  {
-    id: 4,
-    title: 'Entrepreneur électricien (CMEQ)',
-    description: "Préparation aux examens d'entrepreneur électricien de la CMEQ.",
-    emoji: '📋'
-  },
-  {
-    id: 5,
-    title: 'Sceau Rouge',
-    description: "Préparation à l'examen interprovincial Sceau Rouge pour électriciens.",
-    emoji: '🔴'
-  },
-  {
-    id: 6,
-    title: 'Compagnonnage en atelier',
-    description: 'Formation pratique en atelier avec accompagnement professionnel personnalisé.',
-    emoji: '🛠️'
-  }
+  { id: 1, emoji: '⚡' },
+  { id: 2, emoji: '🔌' },
+  { id: 3, emoji: '🏗️' },
+  { id: 4, emoji: '📋' },
+  { id: 5, emoji: '🔴' },
+  { id: 6, emoji: '🛠️' }
 ])
 </script>
 

@@ -1,5 +1,8 @@
 <template>
   <div class="program-detail-page fe-page">
+    <!-- Language Switcher -->
+    <LanguageSwitcher />
+
     <!-- Breadcrumb -->
     <BreadcrumbSection :title="program?.title || 'Programme'" />
 
@@ -10,14 +13,14 @@
           <!-- Sidebar -->
           <aside class="program-sidebar">
             <div class="fe-sidebar-cta">
-              <h4>Voulez-vous en savoir davantage?</h4>
+              <h4>{{ $t('public.program_detail.sidebar_cta') }}</h4>
               <router-link to="/contact" class="fe-btn fe-btn-primary">
-                Contactez-nous
+                {{ $t('public.program_detail.contact_button') }}
               </router-link>
             </div>
 
             <div class="fe-sidebar-widget fe-sidebar-nav">
-              <h4>Autres Programmes</h4>
+              <h4>{{ $t('public.program_detail.other_programs') }}</h4>
               <ul>
                 <li 
                   v-for="prog in allPrograms" 
@@ -40,7 +43,7 @@
     </section>
 
     <!-- Call to Action -->
-    <CtaSection :title="ctaTitle" />
+    <CtaSection :title="$t('public.program_detail.cta_title')" />
 
     <!-- Team Section -->
     <TeamSection />
@@ -53,18 +56,30 @@
 <script setup>
 import { computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { BreadcrumbSection, CtaSection, TeamSection, TestimonialsSection } from '@/components/public'
-import { programsData, allPrograms } from './programsData'
+import { useI18n } from 'vue-i18n'
+import { BreadcrumbSection, CtaSection, LanguageSwitcher, TeamSection, TestimonialsSection } from '@/components/public'
+import { getProgramsData, getAllPrograms } from './programsData'
 
 const route = useRoute()
-
-const ctaTitle = 'Formation Électro Inc., dispose de 2 locaux pour la théorie équipés de système informatique'
+const { locale } = useI18n()
 
 const currentProgramId = computed(() => parseInt(route.params.id) || 1)
-const program = computed(() => programsData[currentProgramId.value] || programsData[1])
+
+// Get data based on current locale
+const programsData = computed(() => getProgramsData(locale.value))
+const allPrograms = computed(() => getAllPrograms(locale.value))
+
+const program = computed(() => programsData.value[currentProgramId.value] || programsData.value[1])
 
 watch(() => route.params.id, () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
+})
+
+// Watch locale changes to ensure reactivity
+watch(() => locale.value, () => {
+  // Trigger re-render by accessing computed properties
+  programsData.value
+  allPrograms.value
 })
 </script>
 

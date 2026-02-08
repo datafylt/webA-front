@@ -1,5 +1,8 @@
 <template>
   <div class="home-page fe-page">
+    <!-- Language Switcher -->
+    <LanguageSwitcher />
+
     <!-- Home Slider -->
     <section class="home-slider">
       <div class="slider-container">
@@ -41,7 +44,7 @@
     <section class="callouts-section">
       <div class="fe-container">
         <div class="fe-section-title">
-          <h2>Bienvenue à <span>Formation Électro Inc</span></h2>
+          <h2>{{ $t('public.home.welcome_title') }} <span>{{ $t('public.home.welcome_company') }}</span></h2>
           <div class="fe-title-border">
             <span class="fe-bulb-icon">💡</span>
           </div>
@@ -71,17 +74,17 @@
           <div class="counter-item">
             <div class="counter-icon">💎</div>
             <div class="counter-number">{{ animatedCount1 }}</div>
-            <p>Plus de 25 ans d'existence</p>
+            <p>{{ $t('public.home.counters.years') }}</p>
           </div>
           <div class="counter-item">
             <div class="counter-icon">👥</div>
             <div class="counter-number">{{ animatedCount2 }}<span>%</span></div>
-            <p>Taux de réussite</p>
+            <p>{{ $t('public.home.counters.success') }}</p>
           </div>
           <div class="counter-item">
             <div class="counter-icon">💻</div>
             <div class="counter-number">{{ animatedCount3 }}</div>
-            <p>Plus de 50 entreprises loyal</p>
+            <p>{{ $t('public.home.counters.companies') }}</p>
           </div>
         </div>
       </div>
@@ -92,19 +95,14 @@
       <div class="fe-container">
         <div class="about-grid">
           <div class="about-text fe-content">
-            <h3>À propos de "Formation Électro Inc."</h3>
-            <p>
-              Nous dispensons des formations pratiques et théoriques en contrôle de moteurs,
-              l'installation et le contrôle de chauffage, d'éclairage et l'installation de
-              transformateurs monophasé ou triphasé. Des cours en lecture de plans et devis,
-              de croquis et schémas, élaboration d'examens pré-embauche théoriques et pratiques.
-            </p>
+            <h3>{{ $t('public.home.about.title') }}</h3>
+            <p>{{ $t('public.home.about.description') }}</p>
             <ul>
-              <li>Contrôle de Moteurs</li>
-              <li>Installation et Contrôle de Chauffage, de climatisation et d'éclairage</li>
-              <li>Installation de Transformateurs Monophasé ou Triphasé</li>
+              <li>{{ $t('public.home.about.service1') }}</li>
+              <li>{{ $t('public.home.about.service2') }}</li>
+              <li>{{ $t('public.home.about.service3') }}</li>
             </ul>
-            <router-link to="/about" class="fe-btn fe-btn-primary">En savoir plus</router-link>
+            <router-link to="/about" class="fe-btn fe-btn-primary">{{ $t('public.home.about.button') }}</router-link>
           </div>
           <div class="about-image">
             <img src="/images/main-about.png" alt="Formation Électro" />
@@ -125,45 +123,48 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import { CtaSection, TeamSection, TestimonialsSection } from '@/components/public'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { CtaSection, LanguageSwitcher, TeamSection, TestimonialsSection } from '@/components/public'
 
-const ctaTitle = 'Formation en vue de l\'obtention de la qualification de compagnon électricien <em>(Licence C)</em>'
+const { t } = useI18n()
 
-const slides = ref([
+const ctaTitle = computed(() => t('public.home.cta_title'))
+
+const slides = computed(() => [
   {
-    title: 'FORMATION ÉLECTRO INC',
-    subtitle: "Peut intervenir auprès de votre entreprise de plusieurs façon, à titre d'expert-conseil et de formateur",
-    buttonText: 'Contactez-nous',
+    title: t('public.home.slide1.title'),
+    subtitle: t('public.home.slide1.subtitle'),
+    buttonText: t('public.home.slide1.button'),
     link: '/contact',
     external: false,
     image: '/images/slide1.png'
   },
   {
-    title: 'Reconnu par Emploi Québec',
-    subtitle: "Formation électro inc. est un organisme de formation qui est officiellement reconnu par Emploi Québec, No. d'agrément: 0055420.",
-    buttonText: "Référence d'Emploi Québec",
+    title: t('public.home.slide2.title'),
+    subtitle: t('public.home.slide2.subtitle'),
+    buttonText: t('public.home.slide2.button'),
     link: 'http://www.emploiquebec.gouv.qc.ca/fileadmin/fichiers/pdf/Guide-qualif/electricite_fiche.pdf#page=9',
     external: true,
     image: '/images/slide2.png'
   },
   {
-    title: 'Structurée et Assumée',
-    subtitle: "Une approche personnalisée de l'apprentissage des étudiants",
-    buttonText: 'Contactez-nous',
+    title: t('public.home.slide3.title'),
+    subtitle: t('public.home.slide3.subtitle'),
+    buttonText: t('public.home.slide3.button'),
     link: '/contact',
     external: false,
     image: '/images/slide3.png'
   }
 ])
 
-const programs = ref([
-  { id: 1, shortTitle: 'Licence C', title: 'Compagnon Electricien Licence C', emoji: '⚡' },
-  { id: 2, shortTitle: 'RCA', title: "Connexions restreintes d'appareillage électrique", emoji: '🔌' },
-  { id: 3, shortTitle: 'RBQ', title: 'Préparation aux examens de constructeur propriétaire (RBQ)', emoji: '🏗️' },
-  { id: 4, shortTitle: 'CMEQ', title: "Préparation aux examens de l'entrepreneur électricien(CMEQ)", emoji: '📋' },
-  { id: 5, shortTitle: 'Sceau Rouge', title: 'Préparation aux examens Sceau Rouge', emoji: '🔴' },
-  { id: 6, shortTitle: 'Compagnonnage', title: 'Compagnonnage en atelier', emoji: '🛠️' }
+const programs = computed(() => [
+  { id: 1, shortTitle: t('public.home.programs.licence_c.short'), title: t('public.home.programs.licence_c.title'), emoji: '⚡' },
+  { id: 2, shortTitle: t('public.home.programs.rca.short'), title: t('public.home.programs.rca.title'), emoji: '🔌' },
+  { id: 3, shortTitle: t('public.home.programs.rbq.short'), title: t('public.home.programs.rbq.title'), emoji: '🏗️' },
+  { id: 4, shortTitle: t('public.home.programs.cmeq.short'), title: t('public.home.programs.cmeq.title'), emoji: '📋' },
+  { id: 5, shortTitle: t('public.home.programs.red_seal.short'), title: t('public.home.programs.red_seal.title'), emoji: '🔴' },
+  { id: 6, shortTitle: t('public.home.programs.apprenticeship.short'), title: t('public.home.programs.apprenticeship.title'), emoji: '🛠️' }
 ])
 
 const currentSlide = ref(0)

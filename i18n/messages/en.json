@@ -58,5 +58,192 @@
     "buttons": {
       "update": "Update"
     }
+  },
+  "public": {
+    "navigation": {
+      "home": "HOME",
+      "about": "ABOUT US",
+      "programs": "PROGRAMS",
+      "instructors": "OUR INSTRUCTORS",
+      "contact": "CONTACT US",
+      "login": "LOGIN"
+    },
+    "home": {
+      "welcome_title": "Bienvenue à",
+      "welcome_company": "Formation Électro Inc",
+      "slide1": {
+        "title": "FORMATION ÉLECTRO INC",
+        "subtitle": "Can assist your company in various ways, as an expert consultant and trainer",
+        "button": "Contact us"
+      },
+      "slide2": {
+        "title": "Recognized by Emploi Québec",
+        "subtitle": "Formation électro inc. is a training organization officially recognized by Emploi Québec, Registration No.: 0055420.",
+        "button": "Emploi Québec Reference"
+      },
+      "slide3": {
+        "title": "Structured and Responsible",
+        "subtitle": "A personalized approach to student learning",
+        "button": "Contact us"
+      },
+      "programs": {
+        "licence_c": {
+          "short": "Licence C",
+          "title": "Compagnon Electricien Licence C"
+        },
+        "rca": {
+          "short": "RCA",
+          "title": "Connexions restreintes d'appareillage électrique"
+        },
+        "rbq": {
+          "short": "RBQ",
+          "title": "Préparation aux examens de constructeur propriétaire (RBQ)"
+        },
+        "cmeq": {
+          "short": "CMEQ",
+          "title": "Préparation aux examens de l'entrepreneur électricien(CMEQ)"
+        },
+        "red_seal": {
+          "short": "Sceau Rouge",
+          "title": "Préparation aux examens Sceau Rouge"
+        },
+        "apprenticeship": {
+          "short": "Compagnonnage",
+          "title": "Compagnonnage en atelier"
+        }
+      },
+      "counters": {
+        "years": "Over 25 years of existence",
+        "success": "Success rate",
+        "companies": "More than 50 loyal companies"
+      },
+      "about": {
+        "title": "About \"Formation Électro Inc.\"",
+        "description": "We provide practical and theoretical training in motor control, heating and lighting installation and control, and single-phase or three-phase transformer installation. Courses in blueprint and specification reading, sketching and schematics, and development of theoretical and practical pre-employment exams.",
+        "service1": "Motor Control",
+        "service2": "Heating, Air Conditioning and Lighting Installation and Control",
+        "service3": "Single-Phase or Three-Phase Transformer Installation",
+        "button": "Learn more"
+      },
+      "cta_title": "Training to obtain journeyman electrician qualification <em>(License C)</em>"
+    },
+    "about": {
+      "breadcrumb": "À Propos De Nous",
+      "history_title": "Notre Histoire",
+      "history_content": "For over three decades, Formation Électro Inc. has distinguished itself as a leader in professional electrical training in Quebec. Our company has guided thousands of candidates to success in their qualification exams, contributing to the excellence of Quebec's workforce in the electrical sector.",
+      "founder_title": "Le Fondateur",
+      "founder_p1": "Yvan Dumais is a master electrician and the founder of Formation Électro Inc. He holds an interprovincial electrician qualification certificate as well as an electrotechnology teaching license from the Quebec Ministry of Education. He is also a certified trainer in occupational health and safety.",
+      "founder_p2": "After a career of more than 10 years as a professional electrician in the field, Mr. Dumais dedicated the following 25 years to teaching electrotechnology. In 1992, driven by his passion for knowledge transmission, he founded \"Formation Électro Inc.\" with the mission of offering superior quality training to future electricians in Quebec.",
+      "founder_p3": "Over the years, Mr. Dumais has shared his expertise and know-how with Mr. Mahmad Sabhir Pheerunggee, who is today the lead instructor and partner of the company.",
+      "expertise_title": "Notre Expertise",
+      "expertise_p1": "With this extensive practical experience and in-depth theoretical knowledge, our team has developed comprehensive and structured training programs. These programs are specifically designed to help apprentice electricians master essential concepts and succeed in their qualification exams.",
+      "expertise_p2": "Our training covers the preparation for the journeyman electrician test (License C) for construction and non-construction, as well as the interprovincial electrician test (Red Seal). We also offer training for master electrician exams and owner-builder exams (RBQ).",
+      "cta_title": "Pre-employment competency exams",
+      "cta_description": "At the request of business leaders, Formation Électro Inc. develops customized theoretical and practical exams to rigorously evaluate the skills of hiring candidates in the electrical field.",
+      "expansion_title": "Expansion en 2008",
+      "expansion_content": "In 2008, Formation Électro Inc. expanded its service offering by developing a training program for future journeymen in restricted electrical appliance connections (RCA). This initiative responded to the new accessibility offered by Emploi Québec and its partners, allowing Quebec workers to obtain the journeyman certificate in restricted electrical appliance connections.",
+      "services_title": "Nos Services",
+      "services_intro": "Today, Formation Électro Inc. provides a complete range of practical and theoretical training adapted to industry needs. Our offering includes:",
+      "service1": "Electric motor control",
+      "service2": "Installation and control of heating and air conditioning systems",
+      "service3": "Installation and control of lighting systems",
+      "service4": "Installation of single-phase and three-phase transformers",
+      "service5": "Reading electrical plans and specifications",
+      "service6": "Interpretation of sketches and diagrams",
+      "service7": "Development of theoretical and practical pre-employment exams",
+      "commitment_title": "Notre Engagement",
+      "commitment_p1": "Formation Électro Inc. is officially recognized by Emploi Québec (Registration No.: 0055420). This recognition testifies to the quality of our training and our commitment to excellence.",
+      "commitment_p2": "Whether you are an apprentice electrician, a professional seeking to obtain a new qualification, or a company wishing to train its staff, Formation Électro Inc. can meet all your electrical training needs. We are proud to be an essential reference in this field in Quebec."
+    },
+    "contact": {
+      "breadcrumb": "Contactez-nous",
+      "form_title": "Send us a message",
+      "success_message": "Your message has been sent successfully! We will respond to you soon.",
+      "error_message": "An error occurred. Please try again.",
+      "name_placeholder": "Your name *",
+      "email_placeholder": "Your email *",
+      "phone_placeholder": "Your phone",
+      "subject_placeholder": "Subject *",
+      "message_placeholder": "Your message *",
+      "submit_button": "Send message",
+      "submitting_button": "Sending...",
+      "info_title": "Contact information",
+      "address_label": "Address",
+      "address": "4030 Boulevard de la Côte-Vertu, Saint-Laurent, QC H4R 1V4, office 104",
+      "phone_label": "Phone",
+      "email_label": "Email",
+      "hours_label": "Business hours",
+      "hours": "Mon - Sat: 9:00 AM - 6:00 PM<br>Sunday: Closed"
+    },
+    "programs": {
+      "breadcrumb": "Nos Programmes",
+      "section_title": "Programmes de",
+      "section_title_span": "Formation",
+      "cta_title": "Training to obtain journeyman electrician qualification <em>(License C)</em>",
+      "learn_more": "Learn more →",
+      "list": {
+        "1": {
+          "title": "Compagnon Électricien Licence C",
+          "description": "Complete training to obtain journeyman electrician qualification for non-construction."
+        },
+        "2": {
+          "title": "Connexions restreintes (RCA)",
+          "description": "Training for restricted electrical appliance connection certificate."
+        },
+        "3": {
+          "title": "Constructeur propriétaire (RBQ)",
+          "description": "Preparation for owner-builder exams from the Building Board."
+        },
+        "4": {
+          "title": "Entrepreneur électricien (CMEQ)",
+          "description": "Preparation for electrical contractor exams from CMEQ."
+        },
+        "5": {
+          "title": "Sceau Rouge",
+          "description": "Preparation for the interprovincial Red Seal exam for electricians."
+        },
+        "6": {
+          "title": "Compagnonnage en atelier",
+          "description": "Hands-on workshop training with personalized professional guidance."
+        }
+      }
+    },
+    "program_detail": {
+      "sidebar_cta": "Want to know more?",
+      "contact_button": "Contact us",
+      "other_programs": "Other Programs",
+      "cta_title": "Formation Électro Inc. has 2 theory classrooms equipped with computer systems"
+    },
+    "instructors": {
+      "breadcrumb": "Nos Instructeurs et Équipe",
+      "intro_p1": "With our wide range of services, we have had another bilingual trainer since 2017 in the person of Mr. Mahmad Sabhir Pheerunggee. He joined the team as a trainer and partner and since then, the company has continued to flourish and offer the best training services in French as well as English for better support to companies as well as individuals.",
+      "intro_p2": "With over 30 years of combined expertise in the electrical field, our team has in-depth knowledge of Quebec's Electrical Code standards, Emploi Québec requirements, and industry best practices. We offer personalized support to each student, adapting our teaching methods according to individual needs and professional goals.",
+      "intro_p3": "Our pedagogical approach combines theory and practice, allowing candidates to develop the essential skills to succeed in their qualification exams. Whether for License C, RCA certificate, RBQ exams, CMEQ, or Red Seal, we prepare our students with rigor and professionalism.",
+      "intro_p4": "It is therefore with strength and enthusiasm that we meet your needs in the field of electrotechnology. Our mission is to accompany you to success and contribute to the excellence of Quebec's workforce in the electrical sector.",
+      "team_title": "Notre",
+      "team_title_span": "Équipe",
+      "members": {
+        "1": {
+          "name": "Mahmad Sabhir Pheerunggee",
+          "role": "Lead Instructor & Partner",
+          "bio": "Lead instructor and partner since 2017, Mr. Pheerunggee is an experienced bilingual trainer. He provides the majority of training in French and English, offering personalized support to companies and individuals. His expertise and dedication greatly contribute to our students' success."
+        },
+        "2": {
+          "name": "Yvan Dumais",
+          "role": "Founder & Lead Instructor",
+          "bio": "Master electrician with over 35 years of experience. Holds an interprovincial electrician qualification certificate and an electrotechnology teaching license from the Quebec Ministry of Education."
+        },
+        "3": {
+          "name": "Formation Électro Team",
+          "role": "Administrative Support",
+          "bio": "Our administrative team ensures the smooth running of training sessions and accompanies students throughout their journey."
+        },
+        "4": {
+          "name": "IT Department",
+          "role": "IT Support",
+          "bio": "Our IT department ensures the proper functioning of systems, website management and digital tools, as well as technical support to guarantee an optimal learning experience."
+        }
+      }
+    }
   }
 }

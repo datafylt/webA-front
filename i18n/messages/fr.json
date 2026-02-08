@@ -1,0 +1,190 @@
+{
+  "lang": "Français",
+  "public": {
+    "navigation": {
+      "home": "ACCUEIL",
+      "about": "À PROPOS DE NOUS",
+      "programs": "PROGRAMMES",
+      "instructors": "NOS INSTRUCTEURS",
+      "contact": "CONTACTEZ-NOUS",
+      "login": "CONNEXION"
+    },
+    "home": {
+      "welcome_title": "Bienvenue à",
+      "welcome_company": "Formation Électro Inc",
+      "slide1": {
+        "title": "FORMATION ÉLECTRO INC",
+        "subtitle": "Peut intervenir auprès de votre entreprise de plusieurs façon, à titre d'expert-conseil et de formateur",
+        "button": "Contactez-nous"
+      },
+      "slide2": {
+        "title": "Reconnu par Emploi Québec",
+        "subtitle": "Formation électro inc. est un organisme de formation qui est officiellement reconnu par Emploi Québec, No. d'agrément: 0055420.",
+        "button": "Référence d'Emploi Québec"
+      },
+      "slide3": {
+        "title": "Structurée et Assumée",
+        "subtitle": "Une approche personnalisée de l'apprentissage des étudiants",
+        "button": "Contactez-nous"
+      },
+      "programs": {
+        "licence_c": {
+          "short": "Licence C",
+          "title": "Compagnon Electricien Licence C"
+        },
+        "rca": {
+          "short": "RCA",
+          "title": "Connexions restreintes d'appareillage électrique"
+        },
+        "rbq": {
+          "short": "RBQ",
+          "title": "Préparation aux examens de constructeur propriétaire (RBQ)"
+        },
+        "cmeq": {
+          "short": "CMEQ",
+          "title": "Préparation aux examens de l'entrepreneur électricien(CMEQ)"
+        },
+        "red_seal": {
+          "short": "Sceau Rouge",
+          "title": "Préparation aux examens Sceau Rouge"
+        },
+        "apprenticeship": {
+          "short": "Compagnonnage",
+          "title": "Compagnonnage en atelier"
+        }
+      },
+      "counters": {
+        "years": "Plus de 25 ans d'existence",
+        "success": "Taux de réussite",
+        "companies": "Plus de 50 entreprises loyal"
+      },
+      "about": {
+        "title": "À propos de \"Formation Électro Inc.\"",
+        "description": "Nous dispensons des formations pratiques et théoriques en contrôle de moteurs, l'installation et le contrôle de chauffage, d'éclairage et l'installation de transformateurs monophasé ou triphasé. Des cours en lecture de plans et devis, de croquis et schémas, élaboration d'examens pré-embauche théoriques et pratiques.",
+        "service1": "Contrôle de Moteurs",
+        "service2": "Installation et Contrôle de Chauffage, de climatisation et d'éclairage",
+        "service3": "Installation de Transformateurs Monophasé ou Triphasé",
+        "button": "En savoir plus"
+      },
+      "cta_title": "Formation en vue de l'obtention de la qualification de compagnon électricien <em>(Licence C)</em>"
+    },
+    "about": {
+      "breadcrumb": "À Propos De Nous",
+      "history_title": "Notre Histoire",
+      "history_content": "Depuis plus de trois décennies, Formation Électro Inc. se distingue comme un leader dans la formation professionnelle en électricité au Québec. Notre entreprise a accompagné des milliers de candidats vers la réussite de leurs examens de qualification, contribuant ainsi à l'excellence de la main-d'œuvre québécoise dans le secteur de l'électricité.",
+      "founder_title": "Le Fondateur",
+      "founder_p1": "Yvan Dumais est maître électricien et le fondateur de Formation Électro Inc. Il détient un certificat de qualification d'électricien interprovincial ainsi qu'un brevet d'enseignement en électrotechnique du ministère de l'Éducation du Québec. Il est également formateur certifié en santé et sécurité dans le milieu du travail.",
+      "founder_p2": "Après une carrière de plus de 10 ans comme électricien professionnel sur le terrain, M. Dumais a consacré les 25 années suivantes à l'enseignement de l'électrotechnique. En 1992, animé par sa passion pour la transmission du savoir, il a fondé l'entreprise \"Formation Électro Inc.\" avec la mission d'offrir une formation de qualité supérieure aux futurs électriciens du Québec.",
+      "founder_p3": "Au fil des années, M. Dumais a partagé son expertise et son savoir-faire avec M. Mahmad Sabhir Pheerunggee, qui est aujourd'hui instructeur principal et associé de l'entreprise.",
+      "expertise_title": "Notre Expertise",
+      "expertise_p1": "Fort de cette longue expérience pratique et de connaissances théoriques approfondies, notre équipe a développé des programmes de formation complets et structurés. Ces programmes sont spécifiquement conçus pour aider les apprentis électriciens à maîtriser les notions essentielles et à réussir leurs examens de qualification.",
+      "expertise_p2": "Nos formations couvrent notamment la préparation au test de compagnon électricien (Licence C) pour la construction et hors construction, ainsi que le test d'électricien interprovincial (Sceau Rouge). Nous offrons également des formations pour les examens de maîtres électriciens et de constructeurs propriétaires (RBQ).",
+      "cta_title": "Examens de compétence pour le pré-embauche",
+      "cta_description": "À la demande des dirigeants d'entreprises, Formation Électro Inc. élabore des examens théoriques et pratiques personnalisés afin d'évaluer rigoureusement les compétences des candidats à l'embauche dans le domaine de l'électricité.",
+      "expansion_title": "Expansion en 2008",
+      "expansion_content": "En 2008, Formation Électro Inc. a élargi son offre de services en développant un programme de formation pour les futurs compagnons en connexions restreintes d'appareillage électrique (RCA). Cette initiative répondait à la nouvelle accessibilité offerte par Emploi Québec et ses partenaires, permettant aux travailleurs québécois d'obtenir le certificat de compagnon en connexions restreintes d'appareillage électrique.",
+      "services_title": "Nos Services",
+      "services_intro": "Aujourd'hui, Formation Électro Inc. dispense une gamme complète de formations pratiques et théoriques adaptées aux besoins de l'industrie. Notre offre comprend :",
+      "service1": "Contrôle de moteurs électriques",
+      "service2": "Installation et contrôle de systèmes de chauffage et de climatisation",
+      "service3": "Installation et contrôle de systèmes d'éclairage",
+      "service4": "Installation de transformateurs monophasés et triphasés",
+      "service5": "Lecture de plans et devis électriques",
+      "service6": "Interprétation de croquis et schémas",
+      "service7": "Élaboration d'examens pré-embauche théoriques et pratiques",
+      "commitment_title": "Notre Engagement",
+      "commitment_p1": "Formation Électro Inc. est officiellement reconnue par Emploi Québec (No. d'agrément : 0055420). Cette reconnaissance témoigne de la qualité de nos formations et de notre engagement envers l'excellence.",
+      "commitment_p2": "Que vous soyez un apprenti électricien, un professionnel cherchant à obtenir une nouvelle qualification, ou une entreprise souhaitant former son personnel, Formation Électro Inc. peut répondre à tous vos besoins de formation en électricité. Nous sommes fiers d'être une référence incontournable dans ce domaine au Québec."
+    },
+    "contact": {
+      "breadcrumb": "Contactez-nous",
+      "form_title": "Envoyez-nous un message",
+      "success_message": "Votre message a été envoyé avec succès! Nous vous répondrons bientôt.",
+      "error_message": "Une erreur s'est produite. Veuillez réessayer.",
+      "name_placeholder": "Votre nom *",
+      "email_placeholder": "Votre courriel *",
+      "phone_placeholder": "Votre téléphone",
+      "subject_placeholder": "Sujet *",
+      "message_placeholder": "Votre message *",
+      "submit_button": "Envoyer le message",
+      "submitting_button": "Envoi en cours...",
+      "info_title": "Informations de contact",
+      "address_label": "Adresse",
+      "address": "4030 Boulevard de la Côte-Vertu, Saint-Laurent, QC H4R 1V4, bureau 104",
+      "phone_label": "Téléphone",
+      "email_label": "Courriel",
+      "hours_label": "Heures d'ouverture",
+      "hours": "Lun - Sam: 9:00 - 18:00<br>Dimanche: Fermé"
+    },
+    "programs": {
+      "breadcrumb": "Nos Programmes",
+      "section_title": "Programmes de",
+      "section_title_span": "Formation",
+      "cta_title": "Formation en vue de l'obtention de la qualification de compagnon électricien <em>(Licence C)</em>",
+      "learn_more": "En savoir plus →",
+      "list": {
+        "1": {
+          "title": "Compagnon Électricien Licence C",
+          "description": "Formation complète pour obtenir la qualification de compagnon électricien hors construction."
+        },
+        "2": {
+          "title": "Connexions restreintes (RCA)",
+          "description": "Formation pour le certificat restreint en connexion d'appareillage électrique."
+        },
+        "3": {
+          "title": "Constructeur propriétaire (RBQ)",
+          "description": "Préparation aux examens de constructeur propriétaire de la Régie du bâtiment."
+        },
+        "4": {
+          "title": "Entrepreneur électricien (CMEQ)",
+          "description": "Préparation aux examens d'entrepreneur électricien de la CMEQ."
+        },
+        "5": {
+          "title": "Sceau Rouge",
+          "description": "Préparation à l'examen interprovincial Sceau Rouge pour électriciens."
+        },
+        "6": {
+          "title": "Compagnonnage en atelier",
+          "description": "Formation pratique en atelier avec accompagnement professionnel personnalisé."
+        }
+      }
+    },
+    "program_detail": {
+      "sidebar_cta": "Voulez-vous en savoir davantage?",
+      "contact_button": "Contactez-nous",
+      "other_programs": "Autres Programmes",
+      "cta_title": "Formation Électro Inc., dispose de 2 locaux pour la théorie équipés de système informatique"
+    },
+    "instructors": {
+      "breadcrumb": "Nos Instructeurs et Équipe",
+      "intro_p1": "Notre éventail de services étant vaste, nous disposons depuis 2017 d'un autre formateur bilingue en la personne de M. Mahmad Sabhir Pheerunggee. Il s'est joint à l'équipe comme formateur et associé et depuis, l'entreprise ne cesse de s'épanouir et d'offrir les meilleurs services de formation en Français ainsi qu'en Anglais pour un meilleur support aux entreprises de même qu'aux particuliers.",
+      "intro_p2": "Avec plus de 30 ans d'expertise combinée dans le domaine de l'électricité, notre équipe possède une connaissance approfondie des normes du Code de l'électricité du Québec, des exigences d'Emploi Québec et des meilleures pratiques de l'industrie. Nous offrons un accompagnement personnalisé à chaque étudiant, adaptant nos méthodes d'enseignement selon les besoins individuels et les objectifs professionnels de chacun.",
+      "intro_p3": "Notre approche pédagogique combine la théorie et la pratique, permettant aux candidats de développer les compétences essentielles pour réussir leurs examens de qualification. Que ce soit pour la licence C, le certificat RCA, les examens de la RBQ, de la CMEQ ou le Sceau Rouge, nous préparons nos étudiants avec rigueur et professionnalisme.",
+      "intro_p4": "C'est donc avec force et enthousiasme que nous répondons à vos besoins dans le domaine de l'électrotechnique. Notre mission est de vous accompagner vers la réussite et de contribuer à l'excellence de la main-d'œuvre québécoise dans le secteur de l'électricité.",
+      "team_title": "Notre",
+      "team_title_span": "Équipe",
+      "members": {
+        "1": {
+          "name": "Mahmad Sabhir Pheerunggee",
+          "role": "Instructeur Principal & Associé",
+          "bio": "Instructeur principal et associé depuis 2017, M. Pheerunggee est un formateur bilingue d'expérience. Il assure la majorité des formations en Français et en Anglais, offrant un accompagnement personnalisé aux entreprises et aux particuliers. Son expertise et son dévouement contribuent grandement au succès de nos étudiants."
+        },
+        "2": {
+          "name": "Yvan Dumais",
+          "role": "Fondateur & Instructeur Principal",
+          "bio": "Maître électricien avec plus de 35 ans d'expérience. Détient un certificat de qualification d'électricien interprovincial et un brevet d'enseignement en électrotechnique du ministère de l'Éducation du Québec."
+        },
+        "3": {
+          "name": "Équipe Formation Électro",
+          "role": "Support Administratif",
+          "bio": "Notre équipe administrative assure le bon déroulement des formations et accompagne les étudiants tout au long de leur parcours."
+        },
+        "4": {
+          "name": "Département TI",
+          "role": "Support Informatique",
+          "bio": "Notre département informatique assure le bon fonctionnement des systèmes, la gestion du site web et des outils numériques, ainsi que le support technique pour garantir une expérience d'apprentissage optimale."
+        }
+      }
+    }
+  }
+}
