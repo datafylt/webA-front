@@ -1,5 +1,64 @@
 {
   "lang": "Français",
+  "app_name": "Formation Électro",
+  "header": {
+    "label_profile": "Profil",
+    "label_logout": "Déconnexion",
+    "label_logout_dialog_title": "Attention",
+    "text_logout_confirm": "Confirmer la déconnexion",
+    "text_logout_success": "Déconnexion réussie"
+  },
+  "views": {
+    "login": {
+      "text_login": "Connexion",
+      "message_input_username_password": "Veuillez entrer votre nom d'utilisateur et mot de passe",
+      "message_verifying": "Vérification en cours...",
+      "message_login_success": "Connexion réussie"
+    },
+    "workbench": {
+      "label_workbench": "Tableau de bord",
+      "text_hello": "Bonjour, {username}",
+      "text_welcome": "Aujourd'hui est une autre journée pleine d'énergie!",
+      "label_number_of_items": "Nombre d'éléments",
+      "label_upcoming": "À venir",
+      "label_information": "Information",
+      "label_project": "Projet",
+      "label_more": "Plus"
+    },
+    "profile": {
+      "label_profile": "Profil",
+      "label_modify_information": "Modifier vos informations",
+      "label_change_password": "Changer le mot de passe",
+      "label_avatar": "Avatar",
+      "label_username": "Nom d'utilisateur",
+      "label_email": "Courriel",
+      "label_old_password": "Ancien mot de passe",
+      "label_new_password": "Nouveau mot de passe",
+      "label_confirm_password": "Confirmation du mot de passe",
+      "placeholder_username": "Veuillez entrer votre nom",
+      "placeholder_email": "Veuillez entrer votre adresse courriel",
+      "placeholder_old_password": "Veuillez entrer l'ancien mot de passe",
+      "placeholder_new_password": "Veuillez entrer un nouveau mot de passe",
+      "placeholder_confirm_password": "Veuillez confirmer le mot de passe",
+      "message_username_required": "Veuillez entrer le nom d'utilisateur",
+      "message_old_password_required": "Veuillez entrer l'ancien mot de passe",
+      "message_new_password_required": "Veuillez entrer un nouveau mot de passe",
+      "message_password_confirmation_required": "Veuillez confirmer le mot de passe",
+      "message_password_confirmation_diff": "Les deux mots de passe ne correspondent pas"
+    },
+    "errors": {
+      "label_error": "Erreur",
+      "text_back_to_home": "Retour à l'accueil"
+    }
+  },
+  "common": {
+    "text": {
+      "update_success": "Mise à jour réussie"
+    },
+    "buttons": {
+      "update": "Mettre à jour"
+    }
+  },
   "public": {
     "navigation": {
       "home": "ACCUEIL",
