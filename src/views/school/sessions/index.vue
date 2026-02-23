@@ -55,7 +55,7 @@
       :data="sessions"
       :loading="loading"
       :pagination="pagination"
-      :row-key="row => row.id"
+      :row-key="(row) => row.id"
       striped
       @update:page="handlePageChange"
       @update:page-size="handlePageSizeChange"
@@ -155,19 +155,33 @@
           <n-input v-model:value="formData.location" placeholder="Adresse du lieu" />
         </n-form-item>
 
-        <n-form-item v-if="formData.location_type !== 'in_person'" label="Lien en ligne" path="online_link">
+        <n-form-item
+          v-if="formData.location_type !== 'in_person'"
+          label="Lien en ligne"
+          path="online_link"
+        >
           <n-input v-model:value="formData.online_link" placeholder="Lien Zoom/Teams" />
         </n-form-item>
 
         <n-grid :cols="2" :x-gap="16">
           <n-grid-item>
             <n-form-item label="Places max" path="max_participants">
-              <n-input-number v-model:value="formData.max_participants" :min="1" :max="100" style="width: 100%" />
+              <n-input-number
+                v-model:value="formData.max_participants"
+                :min="1"
+                :max="100"
+                style="width: 100%"
+              />
             </n-form-item>
           </n-grid-item>
           <n-grid-item>
             <n-form-item label="Places min" path="min_participants">
-              <n-input-number v-model:value="formData.min_participants" :min="1" :max="50" style="width: 100%" />
+              <n-input-number
+                v-model:value="formData.min_participants"
+                :min="1"
+                :max="50"
+                style="width: 100%"
+              />
             </n-form-item>
           </n-grid-item>
         </n-grid>
@@ -209,13 +223,18 @@
             :options="studentOptions"
             :loading="loadingStudents"
           />
-          <n-button type="primary" :disabled="!newEnrollment.student_id" @click="handleEnrollStudent">
+          <n-button
+            type="primary"
+            :disabled="!newEnrollment.student_id"
+            @click="handleEnrollStudent"
+          >
             <TheIcon icon="mdi:account-plus" :size="18" class="mr-4" />
             Inscrire
           </n-button>
         </n-space>
         <n-text v-if="selectedSession" depth="3" style="display: block; margin-top: 8px">
-          Places disponibles: {{ selectedSession.available_spots }} / {{ selectedSession.max_participants }}
+          Places disponibles: {{ selectedSession.available_spots }} /
+          {{ selectedSession.max_participants }}
         </n-text>
       </n-card>
 
@@ -223,7 +242,7 @@
         :columns="enrollmentColumns"
         :data="enrollments"
         :loading="loadingEnrollments"
-        :row-key="row => row.id"
+        :row-key="(row) => row.id"
         size="small"
       />
     </n-modal>
@@ -290,7 +309,12 @@ const formData = reactive({ ...defaultFormData })
 
 // Rules
 const rules = {
-  program_id: { required: true, type: 'number', message: 'Le programme est requis', trigger: 'change' },
+  program_id: {
+    required: true,
+    type: 'number',
+    message: 'Le programme est requis',
+    trigger: 'change',
+  },
   title: { required: true, message: 'Le titre est requis', trigger: 'blur' },
   start_date: { required: true, message: 'La date de début est requise', trigger: 'change' },
 }
@@ -352,8 +376,13 @@ const columns = [
     key: 'spots',
     width: 100,
     render(row) {
-      const color = row.available_spots === 0 ? 'error' : row.available_spots <= 3 ? 'warning' : 'success'
-      return h(NTag, { type: color, size: 'small' }, { default: () => `${row.enrolled_count}/${row.max_participants}` })
+      const color =
+        row.available_spots === 0 ? 'error' : row.available_spots <= 3 ? 'warning' : 'success'
+      return h(
+        NTag,
+        { type: color, size: 'small' },
+        { default: () => `${row.enrolled_count}/${row.max_participants}` }
+      )
     },
   },
   {
@@ -376,16 +405,37 @@ const columns = [
     key: 'actions',
     width: 180,
     render(row) {
-      return h(NSpace, { size: 'small' }, {
-        default: () => [
-          h(NButton, { size: 'small', quaternary: true, onClick: () => handleViewEnrollments(row) }, { default: () => 'Inscrits' }),
-          h(NButton, { size: 'small', quaternary: true, onClick: () => handleEdit(row) }, { default: () => 'Éditer' }),
-          h(NPopconfirm, { onPositiveClick: () => handleDelete(row) }, {
-            trigger: () => h(NButton, { size: 'small', quaternary: true, type: 'error' }, { default: () => 'Suppr.' }),
-            default: () => 'Supprimer cette session?',
-          }),
-        ],
-      })
+      return h(
+        NSpace,
+        { size: 'small' },
+        {
+          default: () => [
+            h(
+              NButton,
+              { size: 'small', quaternary: true, onClick: () => handleViewEnrollments(row) },
+              { default: () => 'Inscrits' }
+            ),
+            h(
+              NButton,
+              { size: 'small', quaternary: true, onClick: () => handleEdit(row) },
+              { default: () => 'Éditer' }
+            ),
+            h(
+              NPopconfirm,
+              { onPositiveClick: () => handleDelete(row) },
+              {
+                trigger: () =>
+                  h(
+                    NButton,
+                    { size: 'small', quaternary: true, type: 'error' },
+                    { default: () => 'Suppr.' }
+                  ),
+                default: () => 'Supprimer cette session?',
+              }
+            ),
+          ],
+        }
+      )
     },
   },
 ]
@@ -395,10 +445,14 @@ const enrollmentColumns = [
     title: 'Étudiant',
     key: 'student_name',
     render(row) {
-      return h('a', {
-        style: 'color: #18a058; cursor: pointer; text-decoration: none;',
-        onClick: () => handleGoToStudent(row.student_id)
-      }, row.student_name)
+      return h(
+        'a',
+        {
+          style: 'color: #18a058; cursor: pointer; text-decoration: none;',
+          onClick: () => handleGoToStudent(row.student_id),
+        },
+        row.student_name
+      )
     },
   },
   { title: 'Email', key: 'student_email' },
@@ -406,9 +460,18 @@ const enrollmentColumns = [
     title: 'Statut',
     key: 'status',
     render(row) {
-      const labels = { enrolled: 'Inscrit', completed: 'Complété', cancelled: 'Annulé', no_show: 'Absent' }
+      const labels = {
+        enrolled: 'Inscrit',
+        completed: 'Complété',
+        cancelled: 'Annulé',
+        no_show: 'Absent',
+      }
       const s = { enrolled: 'info', completed: 'success', cancelled: 'error', no_show: 'warning' }
-      return h(NTag, { type: s[row.status] || 'default', size: 'small' }, { default: () => labels[row.status] || row.status })
+      return h(
+        NTag,
+        { type: s[row.status] || 'default', size: 'small' },
+        { default: () => labels[row.status] || row.status }
+      )
     },
   },
   {
@@ -417,7 +480,11 @@ const enrollmentColumns = [
     render(row) {
       const labels = { pending: 'En attente', paid: 'Payé', refunded: 'Remboursé' }
       const p = { pending: 'warning', paid: 'success', refunded: 'error' }
-      return h(NTag, { type: p[row.payment_status] || 'default', size: 'small' }, { default: () => labels[row.payment_status] || row.payment_status })
+      return h(
+        NTag,
+        { type: p[row.payment_status] || 'default', size: 'small' },
+        { default: () => labels[row.payment_status] || row.payment_status }
+      )
     },
   },
   {
@@ -425,10 +492,19 @@ const enrollmentColumns = [
     key: 'actions',
     width: 100,
     render(row) {
-      return h(NPopconfirm, { onPositiveClick: () => handleRemoveEnrollment(row) }, {
-        trigger: () => h(NButton, { size: 'small', quaternary: true, type: 'error' }, { default: () => 'Retirer' }),
-        default: () => 'Retirer cet étudiant?',
-      })
+      return h(
+        NPopconfirm,
+        { onPositiveClick: () => handleRemoveEnrollment(row) },
+        {
+          trigger: () =>
+            h(
+              NButton,
+              { size: 'small', quaternary: true, type: 'error' },
+              { default: () => 'Retirer' }
+            ),
+          default: () => 'Retirer cet étudiant?',
+        }
+      )
     },
   },
 ]
@@ -443,7 +519,7 @@ const pagination = reactive({
   prefix: ({ itemCount }) => `Total: ${itemCount}`,
 })
 
-const modalTitle = computed(() => isEdit.value ? 'Modifier la session' : 'Nouvelle session')
+const modalTitle = computed(() => (isEdit.value ? 'Modifier la session' : 'Nouvelle session'))
 
 // Methods
 function formatDate(dateStr) {
@@ -456,7 +532,7 @@ async function loadPrograms() {
   try {
     const res = await request.get('/program/all')
     if (res.code === 200) {
-      programOptions.value = res.data.map(p => ({
+      programOptions.value = res.data.map((p) => ({
         label: p.name,
         value: p.id,
       }))
@@ -633,9 +709,11 @@ async function handleViewEnrollments(row) {
 async function loadStudents() {
   loadingStudents.value = true
   try {
-    const res = await request.get('/student/list', { params: { page: 1, page_size: 100, status: 'active' } })
+    const res = await request.get('/student/list', {
+      params: { page: 1, page_size: 100, status: 'active' },
+    })
     if (res.code === 200) {
-      studentOptions.value = res.data.map(s => ({
+      studentOptions.value = res.data.map((s) => ({
         label: `${s.first_name} ${s.last_name} (${s.email})`,
         value: s.id,
       }))
@@ -660,7 +738,9 @@ async function handleEnrollStudent() {
       message.success('Étudiant inscrit avec succès')
       newEnrollment.student_id = null
       // Reload enrollments
-      const enrollRes = await request.get('/session/enrollments', { params: { session_id: selectedSession.value.id } })
+      const enrollRes = await request.get('/session/enrollments', {
+        params: { session_id: selectedSession.value.id },
+      })
       if (enrollRes.code === 200) {
         enrollments.value = enrollRes.data
       }
@@ -669,7 +749,7 @@ async function handleEnrollStudent() {
       selectedSession.value.available_spots--
       loadData()
     } else {
-      message.error(res.msg || 'Erreur lors de l\'inscription')
+      message.error(res.msg || "Erreur lors de l'inscription")
     }
   } catch (error) {
     console.error('Error enrolling student:', error)
@@ -679,12 +759,16 @@ async function handleEnrollStudent() {
 
 async function handleRemoveEnrollment(row) {
   try {
-    const res = await request.delete('/session/enrollment/delete', { params: { enrollment_id: row.id } })
+    const res = await request.delete('/session/enrollment/delete', {
+      params: { enrollment_id: row.id },
+    })
 
     if (res.code === 200) {
       message.success('Inscription supprimée')
       // Reload enrollments
-      const enrollRes = await request.get('/session/enrollments', { params: { session_id: selectedSession.value.id } })
+      const enrollRes = await request.get('/session/enrollments', {
+        params: { session_id: selectedSession.value.id },
+      })
       if (enrollRes.code === 200) {
         enrollments.value = enrollRes.data
       }
@@ -713,7 +797,7 @@ onMounted(async () => {
   // Check if we need to reopen enrollments modal
   if (route.query.open_enrollments) {
     const sessionId = parseInt(route.query.open_enrollments)
-    const session = sessions.value.find(s => s.id === sessionId)
+    const session = sessions.value.find((s) => s.id === sessionId)
     if (session) {
       handleViewEnrollments(session)
       // Clear URL param

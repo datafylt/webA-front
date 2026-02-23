@@ -8,7 +8,9 @@
             <div>
               <n-text depth="3">Étudiants actifs</n-text>
               <div class="stat-value">{{ stats.students?.active || 0 }}</div>
-              <n-text depth="3" style="font-size: 12px">+{{ stats.students?.new_this_week || 0 }} cette semaine</n-text>
+              <n-text depth="3" style="font-size: 12px"
+                >+{{ stats.students?.new_this_week || 0 }} cette semaine</n-text
+              >
             </div>
             <n-avatar :size="48" round style="background-color: #18a058">
               <TheIcon icon="mdi:account-school" :size="28" />
@@ -23,7 +25,9 @@
             <div>
               <n-text depth="3">Sessions à venir</n-text>
               <div class="stat-value">{{ stats.sessions?.upcoming || 0 }}</div>
-              <n-text depth="3" style="font-size: 12px">{{ stats.sessions?.total || 0 }} total</n-text>
+              <n-text depth="3" style="font-size: 12px"
+                >{{ stats.sessions?.total || 0 }} total</n-text
+              >
             </div>
             <n-avatar :size="48" round style="background-color: #2080f0">
               <TheIcon icon="mdi:calendar-clock" :size="28" />
@@ -38,7 +42,9 @@
             <div>
               <n-text depth="3">Revenus perçus</n-text>
               <div class="stat-value">{{ formatMoney(stats.revenue?.total_collected) }}</div>
-              <n-text type="warning" style="font-size: 12px">{{ formatMoney(stats.revenue?.pending) }} en attente</n-text>
+              <n-text type="warning" style="font-size: 12px"
+                >{{ formatMoney(stats.revenue?.pending) }} en attente</n-text
+              >
             </div>
             <n-avatar :size="48" round style="background-color: #f0a020">
               <TheIcon icon="mdi:cash-multiple" :size="28" />
@@ -53,7 +59,9 @@
             <div>
               <n-text depth="3">Formateurs</n-text>
               <div class="stat-value">{{ stats.instructors?.available || 0 }}</div>
-              <n-text depth="3" style="font-size: 12px">{{ stats.instructors?.total || 0 }} total</n-text>
+              <n-text depth="3" style="font-size: 12px"
+                >{{ stats.instructors?.total || 0 }} total</n-text
+              >
             </div>
             <n-avatar :size="48" round style="background-color: #722ed1">
               <TheIcon icon="mdi:human-male-board" :size="28" />
@@ -69,7 +77,9 @@
       <n-grid-item>
         <n-card title="Prochaines sessions" size="small">
           <template #header-extra>
-            <n-button text type="primary" @click="$router.push('/school/sessions')">Voir tout</n-button>
+            <n-button text type="primary" @click="$router.push('/school/sessions')"
+              >Voir tout</n-button
+            >
           </template>
           <n-spin :show="loadingSessions">
             <n-list v-if="upcomingSessions.length > 0">
@@ -85,8 +95,12 @@
                   </template>
                   <template #description>
                     <n-space>
-                      <n-text depth="3">{{ session.program_name }} • {{ formatDate(session.start_date) }}</n-text>
-                      <n-text :type="session.enrolled >= session.max_participants ? 'error' : 'success'">
+                      <n-text depth="3"
+                        >{{ session.program_name }} • {{ formatDate(session.start_date) }}</n-text
+                      >
+                      <n-text
+                        :type="session.enrolled >= session.max_participants ? 'error' : 'success'"
+                      >
                         {{ session.enrolled }}/{{ session.max_participants }} inscrits
                       </n-text>
                     </n-space>
@@ -103,7 +117,9 @@
       <n-grid-item>
         <n-card title="Paiements en attente" size="small">
           <template #header-extra>
-            <n-button text type="primary" @click="$router.push('/school/payments')">Voir tout</n-button>
+            <n-button text type="primary" @click="$router.push('/school/payments')"
+              >Voir tout</n-button
+            >
           </template>
           <n-spin :show="loadingPayments">
             <n-list v-if="pendingPayments.length > 0">
@@ -133,7 +149,9 @@
       <n-grid-item>
         <n-card title="Nouveaux étudiants" size="small">
           <template #header-extra>
-            <n-button text type="primary" @click="$router.push('/school/students')">Voir tout</n-button>
+            <n-button text type="primary" @click="$router.push('/school/students')"
+              >Voir tout</n-button
+            >
           </template>
           <n-spin :show="loadingStudents">
             <n-list v-if="recentStudents.length > 0">
@@ -240,7 +258,12 @@ function formatDate(dateStr) {
 
 function getInitials(name) {
   if (!name) return '?'
-  return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
+  return name
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2)
 }
 
 function getLocationTagType(type) {
@@ -260,7 +283,11 @@ function getInvoiceStatusLabel(status) {
 }
 
 function getGoalLabel(goal) {
-  return { licence_c: 'Licence C', rca: 'RCA', rbq: 'RBQ', cmeq: 'CMEQ', sceau_rouge: 'Sceau Rouge' }[goal] || goal
+  return (
+    { licence_c: 'Licence C', rca: 'RCA', rbq: 'RBQ', cmeq: 'CMEQ', sceau_rouge: 'Sceau Rouge' }[
+      goal
+    ] || goal
+  )
 }
 
 // Data loading

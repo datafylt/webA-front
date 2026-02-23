@@ -1,12 +1,12 @@
 <template>
   <div class="public-layout">
     <!-- Pre Loader -->
-    <div v-if="loading" class="loader" id="dvLoading"></div>
+    <div v-if="loading" id="dvLoading" class="loader"></div>
 
     <!-- Header -->
     <header class="main-header" :class="{ 'is-scrolled': isScrolled }">
       <!-- Top Bar -->
-      <div class="top-bar" v-show="!isScrolled">
+      <div v-show="!isScrolled" class="top-bar">
         <div class="container">
           <div class="top-bar-inner">
             <div class="top-left">
@@ -54,29 +54,61 @@
             <nav class="main-nav" :class="{ 'is-open': mobileMenuOpen }">
               <ul class="nav-menu">
                 <li :class="{ active: isActive('/') }">
-                  <router-link to="/" @click="closeMobileMenu">{{ t('public.navigation.home') }}</router-link>
+                  <router-link to="/" @click="closeMobileMenu">{{
+                    t('public.navigation.home')
+                  }}</router-link>
                 </li>
                 <li :class="{ active: isActive('/about') }">
-                  <router-link to="/about" @click="closeMobileMenu">{{ t('public.navigation.about') }}</router-link>
+                  <router-link to="/about" @click="closeMobileMenu">{{
+                    t('public.navigation.about')
+                  }}</router-link>
                 </li>
                 <li class="has-dropdown" :class="{ active: isActive('/programs') }">
                   <a href="javascript:void(0)" @click.prevent="toggleDropdown">
                     {{ t('public.navigation.programs') }} <span class="dropdown-arrow">▼</span>
                   </a>
                   <ul class="dropdown-menu" :class="{ show: dropdownOpen }">
-                    <li><router-link to="/programs/1" @click="closeMobileMenu">Compagnon Electricien Licence C</router-link></li>
-                    <li><router-link to="/programs/2" @click="closeMobileMenu">Connexions restreintes d'appareillage électrique (RCA)</router-link></li>
-                    <li><router-link to="/programs/3" @click="closeMobileMenu">Préparation aux examens de constructeur propriétaire (RBQ)</router-link></li>
-                    <li><router-link to="/programs/4" @click="closeMobileMenu">Préparation aux examens entrepreneur électricien (CMEQ)</router-link></li>
-                    <li><router-link to="/programs/5" @click="closeMobileMenu">Préparation aux examens Sceau Rouge</router-link></li>
-                    <li><router-link to="/programs/6" @click="closeMobileMenu">Compagnonnage en atelier</router-link></li>
+                    <li>
+                      <router-link to="/programs/1" @click="closeMobileMenu"
+                        >Compagnon Electricien Licence C</router-link
+                      >
+                    </li>
+                    <li>
+                      <router-link to="/programs/2" @click="closeMobileMenu"
+                        >Connexions restreintes d'appareillage électrique (RCA)</router-link
+                      >
+                    </li>
+                    <li>
+                      <router-link to="/programs/3" @click="closeMobileMenu"
+                        >Préparation aux examens de constructeur propriétaire (RBQ)</router-link
+                      >
+                    </li>
+                    <li>
+                      <router-link to="/programs/4" @click="closeMobileMenu"
+                        >Préparation aux examens entrepreneur électricien (CMEQ)</router-link
+                      >
+                    </li>
+                    <li>
+                      <router-link to="/programs/5" @click="closeMobileMenu"
+                        >Préparation aux examens Sceau Rouge</router-link
+                      >
+                    </li>
+                    <li>
+                      <router-link to="/programs/6" @click="closeMobileMenu"
+                        >Compagnonnage en atelier</router-link
+                      >
+                    </li>
                   </ul>
                 </li>
                 <li :class="{ active: isActive('/instructors') }">
-                  <router-link to="/instructors" @click="closeMobileMenu">{{ t('public.navigation.instructors') }}</router-link>
+                  <router-link to="/instructors" @click="closeMobileMenu">{{
+                    t('public.navigation.instructors')
+                  }}</router-link>
                 </li>
                 <li :class="{ active: isActive('/contact') }">
-                  <router-link to="/contact" @click="closeMobileMenu">{{ t('public.navigation.contact') }}</router-link>
+                  <router-link to="/contact" @click="closeMobileMenu">{{
+                    t('public.navigation.contact')
+                  }}</router-link>
                 </li>
                 <li class="nav-login">
                   <a href="/login" @click.prevent="goToLogin">{{ t('public.navigation.login') }}</a>
@@ -87,9 +119,9 @@
             <!-- Mobile Menu Toggle -->
             <button
               class="mobile-toggle"
-              @click="toggleMobileMenu"
               :class="{ 'is-open': mobileMenuOpen }"
               aria-label="Toggle menu"
+              @click="toggleMobileMenu"
             >
               <span></span>
               <span></span>
@@ -114,22 +146,35 @@
             <div class="footer-logo">
               <img src="/images/logo.png" alt="Formation Électro Inc" />
             </div>
-            <p class="footer-desc">
-              Connaître les notions et concepts de base en électricité.
-            </p>
+            <p class="footer-desc">Connaître les notions et concepts de base en électricité.</p>
           </div>
 
           <!-- Quick Links -->
           <div class="footer-section">
             <h4>Extra Links</h4>
             <ul class="footer-links">
-              <li><router-link to="/">{{ t('public.navigation.home') }}</router-link></li>
-              <li><router-link to="/about">{{ t('public.navigation.about') }}</router-link></li>
-              <li><router-link to="/programs/1">{{ t('public.navigation.programs') }}</router-link></li>
-              <li><router-link to="/instructors">{{ t('public.navigation.instructors') }}</router-link></li>
-              <li><router-link to="/contact">{{ t('public.navigation.contact') }}</router-link></li>
               <li>
-                <a href="http://www.emploiquebec.gouv.qc.ca/fileadmin/fichiers/pdf/Guide-qualif/electricite_fiche.pdf#page=9" target="_blank">
+                <router-link to="/">{{ t('public.navigation.home') }}</router-link>
+              </li>
+              <li>
+                <router-link to="/about">{{ t('public.navigation.about') }}</router-link>
+              </li>
+              <li>
+                <router-link to="/programs/1">{{ t('public.navigation.programs') }}</router-link>
+              </li>
+              <li>
+                <router-link to="/instructors">{{
+                  t('public.navigation.instructors')
+                }}</router-link>
+              </li>
+              <li>
+                <router-link to="/contact">{{ t('public.navigation.contact') }}</router-link>
+              </li>
+              <li>
+                <a
+                  href="http://www.emploiquebec.gouv.qc.ca/fileadmin/fichiers/pdf/Guide-qualif/electricite_fiche.pdf#page=9"
+                  target="_blank"
+                >
                   Emploi Québec
                 </a>
               </li>
@@ -142,7 +187,7 @@
             <ul class="footer-contact">
               <li>
                 <span class="contact-icon">🕐</span>
-                <span>Mon - Sat 9:00 a.m. - 6:00 p.m.<br>Sunday Closed</span>
+                <span>Mon - Sat 9:00 a.m. - 6:00 p.m.<br />Sunday Closed</span>
               </li>
               <li>
                 <span class="contact-icon">📍</span>
@@ -169,8 +214,8 @@
     <button
       v-show="showScrollTop"
       class="scroll-top"
-      @click="scrollToTop"
       aria-label="Scroll to top"
+      @click="scrollToTop"
     >
       ↑
     </button>
@@ -236,7 +281,7 @@ const handleScroll = () => {
 const scrollToTop = () => {
   window.scrollTo({
     top: 0,
-    behavior: 'smooth'
+    behavior: 'smooth',
   })
 }
 
@@ -383,7 +428,7 @@ onUnmounted(() => {
 }
 
 .top-left ul li a:hover {
-  color: #0277BC;
+  color: #0277bc;
 }
 
 .icon {
@@ -406,7 +451,7 @@ onUnmounted(() => {
 }
 
 .social-icons li a:hover {
-  background: #0277BC;
+  background: #0277bc;
 }
 
 /* Nav Bar */
@@ -451,7 +496,7 @@ onUnmounted(() => {
 
 .nav-menu > li:hover > a,
 .nav-menu > li.active > a {
-  color: #0277BC;
+  color: #0277bc;
 }
 
 /* Dropdown */
@@ -507,7 +552,7 @@ onUnmounted(() => {
 
 .dropdown-menu li a:hover {
   background: #191919;
-  color: #0277BC;
+  color: #0277bc;
 }
 
 /* Login Button in Nav */
@@ -516,7 +561,7 @@ onUnmounted(() => {
 }
 
 .nav-login a {
-  background: #0277BC !important;
+  background: #0277bc !important;
   color: #fff !important;
   padding: 10px 20px !important;
   border-radius: 4px;
@@ -635,7 +680,7 @@ onUnmounted(() => {
 }
 
 .footer-links li a:hover {
-  color: #0277BC;
+  color: #0277bc;
 }
 
 /* Footer Contact */
@@ -680,7 +725,7 @@ onUnmounted(() => {
   right: 20px;
   width: 40px;
   height: 40px;
-  background: #0277BC;
+  background: #0277bc;
   color: #fff;
   border: none;
   border-radius: 50%;
@@ -744,7 +789,7 @@ onUnmounted(() => {
 
   .nav-menu > li:hover > a,
   .nav-menu > li.active > a {
-    color: #0277BC;
+    color: #0277bc;
   }
 
   .dropdown-menu {

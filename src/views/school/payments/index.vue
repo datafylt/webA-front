@@ -34,15 +34,15 @@
     <!-- Filters -->
     <n-card size="small" class="mb-4">
       <n-space>
-        <n-input 
-          v-model:value="filters.search" 
+        <n-input
+          v-model:value="filters.search"
           placeholder="Numéro de facture..."
           clearable
           style="width: 200px"
           @keyup.enter="handleSearch"
           @clear="handleSearch"
         />
-        
+
         <n-select
           v-model:value="filters.status"
           placeholder="Statut"
@@ -62,7 +62,7 @@
       :data="invoices"
       :loading="loading"
       :pagination="pagination"
-      :row-key="row => row.id"
+      :row-key="(row) => row.id"
       striped
       @update:page="handlePageChange"
       @update:page-size="handlePageSizeChange"
@@ -105,8 +105,8 @@
         </n-form-item>
 
         <n-form-item label="Montant HT" path="subtotal">
-          <n-input-number 
-            v-model:value="formData.subtotal" 
+          <n-input-number
+            v-model:value="formData.subtotal"
             :min="0"
             :precision="2"
             style="width: 150px"
@@ -127,7 +127,7 @@
         </n-form-item>
 
         <n-form-item label="Échéance" path="due_date">
-          <n-date-picker 
+          <n-date-picker
             v-model:formatted-value="formData.due_date"
             type="date"
             value-format="yyyy-MM-dd"
@@ -136,15 +136,15 @@
         </n-form-item>
 
         <n-form-item label="Description" path="description">
-          <n-input 
-            v-model:value="formData.description" 
+          <n-input
+            v-model:value="formData.description"
             type="textarea"
             placeholder="Description de la facture"
             :rows="2"
           />
         </n-form-item>
       </n-form>
-      
+
       <template #footer>
         <n-space justify="end">
           <n-button @click="showModal = false">Annuler</n-button>
@@ -164,9 +164,15 @@
       :mask-closable="false"
     >
       <n-descriptions :column="1" label-placement="left" size="small" class="mb-4">
-        <n-descriptions-item label="Étudiant">{{ selectedInvoice?.student_name }}</n-descriptions-item>
-        <n-descriptions-item label="Total">{{ formatMoney(selectedInvoice?.total) }}</n-descriptions-item>
-        <n-descriptions-item label="Payé">{{ formatMoney(selectedInvoice?.amount_paid) }}</n-descriptions-item>
+        <n-descriptions-item label="Étudiant">{{
+          selectedInvoice?.student_name
+        }}</n-descriptions-item>
+        <n-descriptions-item label="Total">{{
+          formatMoney(selectedInvoice?.total)
+        }}</n-descriptions-item>
+        <n-descriptions-item label="Payé">{{
+          formatMoney(selectedInvoice?.amount_paid)
+        }}</n-descriptions-item>
         <n-descriptions-item label="Solde dû">
           <n-text type="error" strong>{{ formatMoney(selectedInvoice?.balance_due) }}</n-text>
         </n-descriptions-item>
@@ -182,14 +188,18 @@
         label-width="100px"
       >
         <n-form-item label="Montant" path="amount">
-          <n-input-number 
-            v-model:value="paymentData.amount" 
+          <n-input-number
+            v-model:value="paymentData.amount"
             :min="0.01"
             :max="selectedInvoice?.balance_due"
             :precision="2"
             style="width: 150px"
           />
-          <n-button size="small" style="margin-left: 8px" @click="paymentData.amount = selectedInvoice?.balance_due">
+          <n-button
+            size="small"
+            style="margin-left: 8px"
+            @click="paymentData.amount = selectedInvoice?.balance_due"
+          >
             Tout
           </n-button>
         </n-form-item>
@@ -206,7 +216,7 @@
           <n-input v-model:value="paymentData.reference" placeholder="# chèque, transaction..." />
         </n-form-item>
       </n-form>
-      
+
       <template #footer>
         <n-space justify="end">
           <n-button @click="showPaymentModal = false">Annuler</n-button>
@@ -220,7 +230,7 @@
 </template>
 
 <script setup>
-import { h, ref, reactive, computed, onMounted } from 'vue'
+import { h, ref, reactive, onMounted } from 'vue'
 import { NButton, NTag, NSpace, NPopconfirm, useMessage } from 'naive-ui'
 import { request } from '@/utils'
 
@@ -280,7 +290,12 @@ const paymentData = reactive({
 
 // Rules
 const rules = {
-  student_id: { required: true, type: 'number', message: 'L\'étudiant est requis', trigger: 'change' },
+  student_id: {
+    required: true,
+    type: 'number',
+    message: "L'étudiant est requis",
+    trigger: 'change',
+  },
   subtotal: { required: true, type: 'number', message: 'Le montant est requis', trigger: 'blur' },
 }
 
@@ -311,8 +326,8 @@ const paymentMethodOptions = [
 // Columns
 const columns = [
   { title: 'Numéro', key: 'invoice_number', width: 140 },
-  { 
-    title: 'Étudiant', 
+  {
+    title: 'Étudiant',
     key: 'student_name',
     render(row) {
       return h('div', [
@@ -321,24 +336,24 @@ const columns = [
       ])
     },
   },
-  { 
-    title: 'Total', 
+  {
+    title: 'Total',
     key: 'total',
     width: 100,
     render(row) {
       return formatMoney(row.total)
     },
   },
-  { 
-    title: 'Payé', 
+  {
+    title: 'Payé',
     key: 'amount_paid',
     width: 100,
     render(row) {
       return formatMoney(row.amount_paid)
     },
   },
-  { 
-    title: 'Solde', 
+  {
+    title: 'Solde',
     key: 'balance_due',
     width: 100,
     render(row) {
@@ -363,8 +378,8 @@ const columns = [
       return h(NTag, { type: s.type, size: 'small' }, { default: () => s.label })
     },
   },
-  { 
-    title: 'Date', 
+  {
+    title: 'Date',
     key: 'issue_date',
     width: 100,
   },
@@ -374,24 +389,41 @@ const columns = [
     width: 200,
     render(row) {
       const actions = [
-        h(NButton, { 
-          size: 'small', 
-          quaternary: true, 
-          disabled: row.status === 'paid',
-          onClick: () => handleAddPayment(row) 
-        }, { default: () => 'Payer' }),
-        h(NButton, { size: 'small', quaternary: true, onClick: () => handleEdit(row) }, { default: () => 'Éditer' }),
+        h(
+          NButton,
+          {
+            size: 'small',
+            quaternary: true,
+            disabled: row.status === 'paid',
+            onClick: () => handleAddPayment(row),
+          },
+          { default: () => 'Payer' }
+        ),
+        h(
+          NButton,
+          { size: 'small', quaternary: true, onClick: () => handleEdit(row) },
+          { default: () => 'Éditer' }
+        ),
       ]
-      
+
       if (row.status !== 'paid') {
         actions.push(
-          h(NPopconfirm, { onPositiveClick: () => handleDelete(row) }, {
-            trigger: () => h(NButton, { size: 'small', quaternary: true, type: 'error' }, { default: () => 'Suppr.' }),
-            default: () => 'Supprimer cette facture?',
-          })
+          h(
+            NPopconfirm,
+            { onPositiveClick: () => handleDelete(row) },
+            {
+              trigger: () =>
+                h(
+                  NButton,
+                  { size: 'small', quaternary: true, type: 'error' },
+                  { default: () => 'Suppr.' }
+                ),
+              default: () => 'Supprimer cette facture?',
+            }
+          )
         )
       }
-      
+
       return h(NSpace, { size: 'small' }, { default: () => actions })
     },
   },
@@ -433,9 +465,11 @@ async function loadStats() {
 async function loadStudents() {
   loadingStudents.value = true
   try {
-    const res = await request.get('/student/list', { params: { page: 1, page_size: 100, status: 'active' } })
+    const res = await request.get('/student/list', {
+      params: { page: 1, page_size: 100, status: 'active' },
+    })
     if (res.code === 200) {
-      studentOptions.value = res.data.map(s => ({
+      studentOptions.value = res.data.map((s) => ({
         label: `${s.first_name} ${s.last_name}`,
         value: s.id,
       }))
@@ -449,9 +483,11 @@ async function loadStudents() {
 
 async function loadSessions() {
   try {
-    const res = await request.get('/session/list', { params: { page: 1, page_size: 50, upcoming: true } })
+    const res = await request.get('/session/list', {
+      params: { page: 1, page_size: 50, upcoming: true },
+    })
     if (res.code === 200) {
-      sessionOptions.value = res.data.map(s => ({
+      sessionOptions.value = res.data.map((s) => ({
         label: `${s.title} (${s.start_date})`,
         value: s.id,
       }))
@@ -468,12 +504,12 @@ async function loadData() {
       page: pagination.page,
       page_size: pagination.pageSize,
     }
-    
+
     if (filters.search) params.search = filters.search
     if (filters.status) params.status = filters.status
 
     const res = await request.get('/invoice/list', { params })
-    
+
     if (res.code === 200) {
       invoices.value = res.data
       pagination.itemCount = res.total
@@ -531,7 +567,7 @@ function handleEdit(row) {
 async function handleDelete(row) {
   try {
     const res = await request.delete('/invoice/delete', { params: { invoice_id: row.id } })
-    
+
     if (res.code === 200) {
       message.success('Facture supprimée')
       loadData()
@@ -548,7 +584,7 @@ async function handleSave() {
   try {
     await formRef.value?.validate()
     saving.value = true
-    
+
     const data = {
       student_id: formData.student_id,
       session_id: formData.session_id || null,
@@ -592,7 +628,7 @@ async function handleSavePayment() {
   try {
     await paymentFormRef.value?.validate()
     savingPayment.value = true
-    
+
     const res = await request.post('/invoice/payment', {
       invoice_id: selectedInvoice.value.id,
       amount: paymentData.amount,

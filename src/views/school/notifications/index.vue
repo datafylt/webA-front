@@ -46,8 +46,8 @@
           <n-select
             v-model:value="formData.recipient_ids"
             placeholder="Sélectionner les étudiants..."
-            multiple
             filterable
+            multiple
             :options="studentOptions"
             :loading="loadingStudents"
             style="width: 100%"
@@ -93,7 +93,12 @@
 
         <n-form-item>
           <n-space>
-            <n-button type="primary" :loading="sending" :disabled="formData.recipient_ids.length === 0" @click="handleSend">
+            <n-button
+              type="primary"
+              :loading="sending"
+              :disabled="formData.recipient_ids.length === 0"
+              @click="handleSend"
+            >
               <TheIcon icon="mdi:send" :size="18" class="mr-4" />
               Envoyer ({{ formData.recipient_ids.length }} destinataire(s))
             </n-button>
@@ -120,7 +125,7 @@
           :columns="templateColumns"
           :data="templates"
           :loading="loadingTemplates"
-          :row-key="row => row.id"
+          :row-key="(row) => row.id"
           size="small"
         />
       </n-space>
@@ -163,7 +168,10 @@
         </n-form-item>
 
         <n-form-item label="Variables" path="variables">
-          <n-input v-model:value="templateFormData.variables" placeholder="{student_name}, {session_date}, etc." />
+          <n-input
+            v-model:value="templateFormData.variables"
+            placeholder="{student_name}, {session_date}, etc."
+          />
         </n-form-item>
 
         <n-form-item label="Actif" path="is_active">
@@ -257,11 +265,11 @@ const typeOptions = [
 // Template columns
 const templateColumns = [
   { title: 'Nom', key: 'name' },
-  { 
-    title: 'Type', 
+  {
+    title: 'Type',
     key: 'notification_type',
     render(row) {
-      const opt = typeOptions.find(o => o.value === row.notification_type)
+      const opt = typeOptions.find((o) => o.value === row.notification_type)
       return opt?.label || row.notification_type
     },
   },
@@ -271,7 +279,11 @@ const templateColumns = [
     key: 'is_active',
     width: 80,
     render(row) {
-      return h(NTag, { type: row.is_active ? 'success' : 'default', size: 'small' }, { default: () => row.is_active ? 'Oui' : 'Non' })
+      return h(
+        NTag,
+        { type: row.is_active ? 'success' : 'default', size: 'small' },
+        { default: () => (row.is_active ? 'Oui' : 'Non') }
+      )
     },
   },
   {
@@ -279,15 +291,32 @@ const templateColumns = [
     key: 'actions',
     width: 150,
     render(row) {
-      return h(NSpace, { size: 'small' }, {
-        default: () => [
-          h(NButton, { size: 'small', quaternary: true, onClick: () => handleEditTemplate(row) }, { default: () => 'Éditer' }),
-          h(NPopconfirm, { onPositiveClick: () => handleDeleteTemplate(row) }, {
-            trigger: () => h(NButton, { size: 'small', quaternary: true, type: 'error' }, { default: () => 'Suppr.' }),
-            default: () => 'Supprimer ce template?',
-          }),
-        ],
-      })
+      return h(
+        NSpace,
+        { size: 'small' },
+        {
+          default: () => [
+            h(
+              NButton,
+              { size: 'small', quaternary: true, onClick: () => handleEditTemplate(row) },
+              { default: () => 'Éditer' }
+            ),
+            h(
+              NPopconfirm,
+              { onPositiveClick: () => handleDeleteTemplate(row) },
+              {
+                trigger: () =>
+                  h(
+                    NButton,
+                    { size: 'small', quaternary: true, type: 'error' },
+                    { default: () => 'Suppr.' }
+                  ),
+                default: () => 'Supprimer ce template?',
+              }
+            ),
+          ],
+        }
+      )
     },
   },
 ]
@@ -307,9 +336,11 @@ async function loadStats() {
 async function loadStudents() {
   loadingStudents.value = true
   try {
-    const res = await request.get('/student/list', { params: { page: 1, page_size: 200, status: 'active' } })
+    const res = await request.get('/student/list', {
+      params: { page: 1, page_size: 200, status: 'active' },
+    })
     if (res.code === 200) {
-      studentOptions.value = res.data.map(s => ({
+      studentOptions.value = res.data.map((s) => ({
         label: `${s.first_name} ${s.last_name} (${s.email})`,
         value: s.id,
       }))
@@ -327,13 +358,15 @@ async function loadTemplates() {
     const res = await request.get('/notification/templates', { params: { page: 1, page_size: 50 } })
     if (res.code === 200) {
       templates.value = res.data
-      templateOptions.value = res.data.filter(t => t.is_active).map(t => ({
-        label: t.name,
-        value: t.id,
-        subject: t.subject,
-        body: t.body,
-        type: t.notification_type,
-      }))
+      templateOptions.value = res.data
+        .filter((t) => t.is_active)
+        .map((t) => ({
+          label: t.name,
+          value: t.id,
+          subject: t.subject,
+          body: t.body,
+          type: t.notification_type,
+        }))
     }
   } catch (error) {
     console.error('Error loading templates:', error)
@@ -344,7 +377,7 @@ async function loadTemplates() {
 
 function handleTemplateSelect(templateId) {
   if (templateId) {
-    const template = templateOptions.value.find(t => t.value === templateId)
+    const template = templateOptions.value.find((t) => t.value === templateId)
     if (template) {
       formData.subject = template.subject
       formData.body = template.body
@@ -446,7 +479,9 @@ async function handleSaveTemplate() {
 
 async function handleDeleteTemplate(row) {
   try {
-    const res = await request.delete('/notification/template/delete', { params: { template_id: row.id } })
+    const res = await request.delete('/notification/template/delete', {
+      params: { template_id: row.id },
+    })
     if (res.code === 200) {
       message.success('Template supprimé')
       loadTemplates()

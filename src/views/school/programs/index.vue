@@ -15,7 +15,11 @@
           <n-card hoverable>
             <template #header>
               <n-space align="center">
-                <TheIcon :icon="program.icon || 'mdi:book-education'" :size="24" :color="program.color" />
+                <TheIcon
+                  :icon="program.icon || 'mdi:book-education'"
+                  :size="24"
+                  :color="program.color"
+                />
                 <span>{{ program.name }}</span>
               </n-space>
             </template>
@@ -91,7 +95,11 @@
         </n-form-item>
 
         <n-form-item label="Code" path="code">
-          <n-input v-model:value="formData.code" placeholder="ex: licence_c, rca" :disabled="isEdit" />
+          <n-input
+            v-model:value="formData.code"
+            placeholder="ex: licence_c, rca"
+            :disabled="isEdit"
+          />
         </n-form-item>
 
         <n-form-item label="Description" path="description">
@@ -131,19 +139,11 @@
         </n-form-item>
 
         <n-form-item label="Couleur" path="color">
-          <n-select
-            v-model:value="formData.color"
-            placeholder="Couleur"
-            :options="colorOptions"
-          />
+          <n-select v-model:value="formData.color" placeholder="Couleur" :options="colorOptions" />
         </n-form-item>
 
         <n-form-item label="Icône" path="icon">
-          <n-select
-            v-model:value="formData.icon"
-            placeholder="Icône"
-            :options="iconOptions"
-          />
+          <n-select v-model:value="formData.icon" placeholder="Icône" :options="iconOptions" />
         </n-form-item>
 
         <n-form-item label="Actif" path="is_active">
@@ -199,7 +199,12 @@ const formData = reactive({ ...defaultFormData })
 const rules = {
   name: { required: true, message: 'Le nom est requis', trigger: 'blur' },
   code: { required: true, message: 'Le code est requis', trigger: 'blur' },
-  duration_hours: { required: true, type: 'number', message: 'La durée est requise', trigger: 'blur' },
+  duration_hours: {
+    required: true,
+    type: 'number',
+    message: 'La durée est requise',
+    trigger: 'blur',
+  },
   price: { required: true, type: 'number', message: 'Le prix est requis', trigger: 'blur' },
 }
 
@@ -229,7 +234,7 @@ const iconOptions = [
   { label: '🎓 École', value: 'mdi:school' },
 ]
 
-const modalTitle = computed(() => isEdit.value ? 'Modifier le programme' : 'Nouveau programme')
+const modalTitle = computed(() => (isEdit.value ? 'Modifier le programme' : 'Nouveau programme'))
 
 // Methods
 function formatPrice(price) {

@@ -28,7 +28,7 @@ watchDebounced(
     filterIcons()
     emit('update:value', choosed.value)
   },
-  { debounce: 200 },
+  { debounce: 200 }
 )
 </script>
 
@@ -36,7 +36,11 @@ watchDebounced(
   <div class="w-full">
     <NPopover trigger="click" placement="bottom-start">
       <template #trigger>
-        <NInput v-model:value="choosed" placeholder="Please enterIconName" @update:value="filterIcons">
+        <NInput
+          v-model:value="choosed"
+          placeholder="Please enterIconName"
+          @update:value="filterIcons"
+        >
           <template #prefix>
             <span class="i-mdi:magnify text-18" />
           </template>

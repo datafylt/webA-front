@@ -6,7 +6,6 @@ import {
   NCheckboxGroup,
   NForm,
   NFormItem,
-  NImage,
   NInput,
   NSpace,
   NSwitch,
@@ -204,40 +203,41 @@ const columns = [
             default: () => h('div', {}, 'Confirm deletethisUser??'),
           }
         ),
-        !row.is_superuser && h(
-          NPopconfirm,
-          {
-            onPositiveClick: async () => {
-              try {
-                await api.resetPassword({ user_id: row.id });
-                $message.success('PasswordalreadySuccessResetfor123456');
-                await $table.value?.handleSearch();
-              } catch (error) {
-                $message.error('ResetPasswordFailed: ' + error.message);
-              }
+        !row.is_superuser &&
+          h(
+            NPopconfirm,
+            {
+              onPositiveClick: async () => {
+                try {
+                  await api.resetPassword({ user_id: row.id })
+                  $message.success('PasswordalreadySuccessResetfor123456')
+                  await $table.value?.handleSearch()
+                } catch (error) {
+                  $message.error('ResetPasswordFailed: ' + error.message)
+                }
+              },
+              onNegativeClick: () => {},
             },
-            onNegativeClick: () => {},
-          },
-          {
-            trigger: () =>
-              withDirectives(
-                h(
-                  NButton,
-                  {
-                    size: 'small',
-                    type: 'warning',
-                    style: 'margin-right: 8px;',
-                  },
-                  {
-                    default: () => 'ResetPassword',
-                    icon: renderIcon('material-symbols:lock-reset', { size: 16 }),
-                  }
+            {
+              trigger: () =>
+                withDirectives(
+                  h(
+                    NButton,
+                    {
+                      size: 'small',
+                      type: 'warning',
+                      style: 'margin-right: 8px;',
+                    },
+                    {
+                      default: () => 'ResetPassword',
+                      icon: renderIcon('material-symbols:lock-reset', { size: 16 }),
+                    }
+                  ),
+                  [[vPermission, 'post/api/v1/user/reset_password']]
                 ),
-                [[vPermission, 'post/api/v1/user/reset_password']]
-              ),
-            default: () => h('div', {}, 'OKResetUserPasswordfor123456??'),
-          }
-        ),
+              default: () => h('div', {}, 'OKResetUserPasswordfor123456??'),
+            }
+          ),
       ]
     },
   },
@@ -424,7 +424,11 @@ const validateAddUser = {
             :rules="validateAddUser"
           >
             <NFormItem label="Username" path="username">
-              <NInput v-model:value="modalForm.username" clearable placeholder="Please enterUsername" />
+              <NInput
+                v-model:value="modalForm.username"
+                clearable
+                placeholder="Please enterUsername"
+              />
             </NFormItem>
             <NFormItem label="Email" path="email">
               <NInput v-model:value="modalForm.email" clearable placeholder="Please enterEmail" />

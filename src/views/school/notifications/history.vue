@@ -44,7 +44,7 @@
       :data="notifications"
       :loading="loading"
       :pagination="pagination"
-      :row-key="row => row.id"
+      :row-key="(row) => row.id"
       striped
       @update:page="handlePageChange"
       @update:page-size="handlePageSizeChange"
@@ -58,20 +58,30 @@
       style="width: 700px"
     >
       <n-descriptions :column="2" label-placement="left" bordered size="small">
-        <n-descriptions-item label="Destinataire">{{ selectedNotification?.recipient_name }}</n-descriptions-item>
-        <n-descriptions-item label="Email">{{ selectedNotification?.recipient_email }}</n-descriptions-item>
-        <n-descriptions-item label="Type">{{ getTypeLabel(selectedNotification?.notification_type) }}</n-descriptions-item>
+        <n-descriptions-item label="Destinataire">{{
+          selectedNotification?.recipient_name
+        }}</n-descriptions-item>
+        <n-descriptions-item label="Email">{{
+          selectedNotification?.recipient_email
+        }}</n-descriptions-item>
+        <n-descriptions-item label="Type">{{
+          getTypeLabel(selectedNotification?.notification_type)
+        }}</n-descriptions-item>
         <n-descriptions-item label="Statut">
           <n-tag :type="getStatusType(selectedNotification?.status)" size="small">
             {{ getStatusLabel(selectedNotification?.status) }}
           </n-tag>
         </n-descriptions-item>
-        <n-descriptions-item label="Créé le">{{ formatDate(selectedNotification?.created_at) }}</n-descriptions-item>
-        <n-descriptions-item label="Envoyé le">{{ formatDate(selectedNotification?.sent_at) || '-' }}</n-descriptions-item>
+        <n-descriptions-item label="Créé le">{{
+          formatDate(selectedNotification?.created_at)
+        }}</n-descriptions-item>
+        <n-descriptions-item label="Envoyé le">{{
+          formatDate(selectedNotification?.sent_at) || '-'
+        }}</n-descriptions-item>
       </n-descriptions>
 
       <n-divider>Contenu</n-divider>
-      
+
       <n-card size="small" embedded>
         <div v-html="selectedNotification?.body"></div>
       </n-card>
@@ -123,8 +133,8 @@ const typeOptions = [
 
 // Columns
 const columns = [
-  { 
-    title: 'Destinataire', 
+  {
+    title: 'Destinataire',
     key: 'recipient',
     render(row) {
       return h('div', [
@@ -147,11 +157,15 @@ const columns = [
     key: 'status',
     width: 100,
     render(row) {
-      return h(NTag, { type: getStatusType(row.status), size: 'small' }, { default: () => getStatusLabel(row.status) })
+      return h(
+        NTag,
+        { type: getStatusType(row.status), size: 'small' },
+        { default: () => getStatusLabel(row.status) }
+      )
     },
   },
-  { 
-    title: 'Date', 
+  {
+    title: 'Date',
     key: 'created_at',
     width: 150,
     render(row) {
@@ -164,22 +178,44 @@ const columns = [
     width: 150,
     render(row) {
       const actions = [
-        h(NButton, { size: 'small', quaternary: true, onClick: () => handleView(row) }, { default: () => 'Voir' }),
+        h(
+          NButton,
+          { size: 'small', quaternary: true, onClick: () => handleView(row) },
+          { default: () => 'Voir' }
+        ),
       ]
-      
+
       if (row.status === 'pending') {
         actions.push(
-          h(NButton, { size: 'small', quaternary: true, type: 'success', onClick: () => handleMarkSent(row) }, { default: () => 'Marquer envoyé' })
+          h(
+            NButton,
+            {
+              size: 'small',
+              quaternary: true,
+              type: 'success',
+              onClick: () => handleMarkSent(row),
+            },
+            { default: () => 'Marquer envoyé' }
+          )
         )
       }
-      
+
       actions.push(
-        h(NPopconfirm, { onPositiveClick: () => handleDelete(row) }, {
-          trigger: () => h(NButton, { size: 'small', quaternary: true, type: 'error' }, { default: () => 'Suppr.' }),
-          default: () => 'Supprimer cette notification?',
-        })
+        h(
+          NPopconfirm,
+          { onPositiveClick: () => handleDelete(row) },
+          {
+            trigger: () =>
+              h(
+                NButton,
+                { size: 'small', quaternary: true, type: 'error' },
+                { default: () => 'Suppr.' }
+              ),
+            default: () => 'Supprimer cette notification?',
+          }
+        )
       )
-      
+
       return h(NSpace, { size: 'small' }, { default: () => actions })
     },
   },
@@ -206,14 +242,27 @@ function getStatusLabel(status) {
 }
 
 function getTypeLabel(type) {
-  const labels = { general: 'Général', reminder: 'Rappel', confirmation: 'Confirmation', invoice: 'Facture', welcome: 'Bienvenue', session: 'Session' }
+  const labels = {
+    general: 'Général',
+    reminder: 'Rappel',
+    confirmation: 'Confirmation',
+    invoice: 'Facture',
+    welcome: 'Bienvenue',
+    session: 'Session',
+  }
   return labels[type] || type
 }
 
 function formatDate(dateStr) {
   if (!dateStr) return null
   const date = new Date(dateStr)
-  return date.toLocaleDateString('fr-CA', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })
+  return date.toLocaleDateString('fr-CA', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  })
 }
 
 // Methods
@@ -273,7 +322,9 @@ function handleView(row) {
 
 async function handleMarkSent(row) {
   try {
-    const res = await request.post('/notification/mark-sent', null, { params: { notification_id: row.id } })
+    const res = await request.post('/notification/mark-sent', null, {
+      params: { notification_id: row.id },
+    })
     if (res.code === 200) {
       message.success('Notification marquée comme envoyée')
       loadData()
@@ -287,7 +338,9 @@ async function handleMarkSent(row) {
 
 async function handleDelete(row) {
   try {
-    const res = await request.delete('/notification/delete', { params: { notification_id: row.id } })
+    const res = await request.delete('/notification/delete', {
+      params: { notification_id: row.id },
+    })
     if (res.code === 200) {
       message.success('Notification supprimée')
       loadData()

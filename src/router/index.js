@@ -12,7 +12,7 @@ export const router = createRouter({
     } else {
       return { top: 0 }
     }
-  }
+  },
 })
 
 // Reset router function - removes all routes and re-adds basic routes
