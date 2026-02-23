@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Lint
-        run: npm run lint -- --rule 'prettier/prettier: 0'
+        run: npx eslint --ext .js,.vue . --rule "prettier/prettier:0"
 
       - name: Build
         run: npm run build
