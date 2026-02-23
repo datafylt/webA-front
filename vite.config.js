@@ -6,7 +6,7 @@ import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import UnoCSS from 'unocss/vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'  // IMPORTANT!
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons' // IMPORTANT!
 
 export default defineConfig(() => {
   return {
@@ -38,9 +38,13 @@ export default defineConfig(() => {
       }),
 
       AutoImport({
-        imports: ['vue', 'vue-router', {
-          'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar'],
-        }],
+        imports: [
+          'vue',
+          'vue-router',
+          {
+            'naive-ui': ['useDialog', 'useMessage', 'useNotification', 'useLoadingBar'],
+          },
+        ],
         dts: false,
       }),
 
@@ -52,21 +56,21 @@ export default defineConfig(() => {
 
     server: {
       host: '0.0.0.0',
-      port: 3101,  // Changed from 3100
+      port: 3101, // Changed from 3100
       open: true,
 
-          proxy: {
-            '/api/v1': {
-              target: 'http://localhost:8001',  // Website A backend
-              changeOrigin: true,
-              configure: (proxy) => {
-                proxy.on('proxyReq', (proxyReq, req) => {
-                  console.log('[WEBSITE-A]', req.method, req.url, '→ 8001')
-                })
-              },
-            },
+      proxy: {
+        '/api/v1': {
+          target: 'http://localhost:8001', // Website A backend
+          changeOrigin: true,
+          configure: (proxy) => {
+            proxy.on('proxyReq', (proxyReq, req) => {
+              console.log('[WEBSITE-A]', req.method, req.url, '→ 8001')
+            })
           },
         },
+      },
+    },
 
     build: {
       target: 'es2015',

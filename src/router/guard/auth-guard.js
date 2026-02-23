@@ -5,11 +5,11 @@ const WHITE_LIST = ['/login', '/404']
 
 // Public website paths (Formation Électro public pages)
 const PUBLIC_PATHS = [
-  '/',             // Home page
+  '/', // Home page
   '/about',
   '/programs',
   '/instructors',
-  '/contact'
+  '/contact',
 ]
 
 // Helper function to check if path is public
@@ -17,7 +17,7 @@ const isPublicPath = (path) => {
   // Exact match for root
   if (path === '/') return true
   // Check other public paths
-  return PUBLIC_PATHS.some(p => p !== '/' && (path === p || path.startsWith(p + '/')))
+  return PUBLIC_PATHS.some((p) => p !== '/' && (path === p || path.startsWith(p + '/')))
 }
 
 export function createAuthGuard(router) {

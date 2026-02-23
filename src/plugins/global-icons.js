@@ -7,7 +7,6 @@ import TheIcon from '@/components/icon/TheIcon.vue'
 import SvgIcon from '@/components/icon/SvgIcon.vue'
 
 export function setupGlobalIcons(app) {
-
   // ============================================
   // Part 1: Custom SVG Icons (icon-custom-*)
   // ============================================
@@ -25,14 +24,17 @@ export function setupGlobalIcons(app) {
 
   customIcons.forEach((iconName) => {
     app.component(`icon-custom-${iconName}`, {
-      name: `IconCustom${iconName.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join('')}`,
+      name: `IconCustom${iconName
+        .split('-')
+        .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+        .join('')}`,
       inheritAttrs: true,
       render() {
         return h(SvgIcon, {
           icon: iconName,
           ...this.$attrs,
         })
-      }
+      },
     })
   })
 
@@ -58,14 +60,14 @@ export function setupGlobalIcons(app) {
           class: this.$attrs.class,
           style: this.$attrs.style,
         })
-      }
+      },
     }
   }
 
   // Define all icon sets and their commonly used icons
   const iconRegistry = {
     // Material Design Icons
-    'mdi': [
+    mdi: [
       'github',
       'globe',
       'web',
@@ -89,13 +91,10 @@ export function setupGlobalIcons(app) {
     ],
 
     // Ant Design Icons
-    'ant-design': [
-      'fullscreen-outlined',
-      'fullscreen-exit-outlined',
-    ],
+    'ant-design': ['fullscreen-outlined', 'fullscreen-exit-outlined'],
 
     // Iconic Icons
-    'ic': [
+    ic: [
       'baseline-keyboard-arrow-left',
       'baseline-keyboard-arrow-right',
       'baseline-keyboard-arrow-up',
@@ -103,30 +102,19 @@ export function setupGlobalIcons(app) {
     ],
 
     // Carbon Icons
-    'carbon': [
-      'user',
-      'data-view',
-    ],
+    carbon: ['user', 'data-view'],
 
     // Tabler Icons
-    'tabler': [
-      'error-404',
-    ],
+    tabler: ['error-404'],
 
     // Solar Icons
-    'solar': [
-      'forbidden-circle-line-duotone',
-    ],
+    solar: ['forbidden-circle-line-duotone'],
 
     // Icon Park Outline
-    'icon-park-outline': [
-      'workbench',
-    ],
+    'icon-park-outline': ['workbench'],
 
     // Material Symbols
-    'material-symbols': [
-      'authenticator',
-    ],
+    'material-symbols': ['authenticator'],
   }
 
   // Register all icons from the registry

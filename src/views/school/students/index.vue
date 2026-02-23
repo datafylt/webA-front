@@ -54,7 +54,7 @@
       :data="students"
       :loading="loading"
       :pagination="pagination"
-      :row-key="row => row.id"
+      :row-key="(row) => row.id"
       striped
       @update:page="handlePageChange"
       @update:page-size="handlePageSizeChange"
@@ -101,7 +101,11 @@
           </n-form-item>
 
           <n-form-item label="Code postal" path="postal_code">
-            <n-input v-model:value="formData.postal_code" placeholder="H1H 1H1" style="width: 120px" />
+            <n-input
+              v-model:value="formData.postal_code"
+              placeholder="H1H 1H1"
+              style="width: 120px"
+            />
           </n-form-item>
         </n-space>
 
@@ -112,7 +116,10 @@
         </n-form-item>
 
         <n-form-item label="No. Carte CCQ" path="ccq_number">
-          <n-input v-model:value="formData.ccq_number" placeholder="Numéro de carte de compétence" />
+          <n-input
+            v-model:value="formData.ccq_number"
+            placeholder="Numéro de carte de compétence"
+          />
         </n-form-item>
 
         <n-form-item label="Heures apprenti" path="apprentice_hours">
@@ -135,11 +142,7 @@
         </n-form-item>
 
         <n-form-item v-if="isEdit" label="Statut" path="status">
-          <n-select
-            v-model:value="formData.status"
-            placeholder="Statut"
-            :options="statusOptions"
-          />
+          <n-select v-model:value="formData.status" placeholder="Statut" :options="statusOptions" />
         </n-form-item>
 
         <n-form-item label="Notes" path="notes">
@@ -165,7 +168,7 @@
 </template>
 
 <script setup>
-import { h, ref, reactive, computed, onMounted, watch } from 'vue'
+import { h, ref, reactive, computed, onMounted } from 'vue'
 import { NButton, NTag, NSpace, NPopconfirm, useMessage } from 'naive-ui'
 import { useRoute, useRouter } from 'vue-router'
 import { request } from '@/utils'
@@ -215,7 +218,7 @@ const rules = {
   first_name: { required: true, message: 'Le prénom est requis', trigger: 'blur' },
   last_name: { required: true, message: 'Le nom est requis', trigger: 'blur' },
   email: [
-    { required: true, message: 'L\'email est requis', trigger: 'blur' },
+    { required: true, message: "L'email est requis", trigger: 'blur' },
     { type: 'email', message: 'Email invalide', trigger: 'blur' },
   ],
 }
@@ -274,7 +277,11 @@ const columns = [
         sceau_rouge: 'Sceau Rouge',
         custom: 'Sur mesure',
       }
-      return h(NTag, { type: colors[row.goal] || 'default', size: 'small' }, { default: () => labels[row.goal] || row.goal })
+      return h(
+        NTag,
+        { type: colors[row.goal] || 'default', size: 'small' },
+        { default: () => labels[row.goal] || row.goal }
+      )
     },
   },
   {
@@ -291,7 +298,11 @@ const columns = [
         inactive: 'Inactif',
         expired: 'Expiré',
       }
-      return h(NTag, { type: colors[row.status], size: 'small' }, { default: () => labels[row.status] || row.status })
+      return h(
+        NTag,
+        { type: colors[row.status], size: 'small' },
+        { default: () => labels[row.status] || row.status }
+      )
     },
   },
   {
@@ -299,15 +310,32 @@ const columns = [
     key: 'actions',
     width: 150,
     render(row) {
-      return h(NSpace, { size: 'small' }, {
-        default: () => [
-          h(NButton, { size: 'small', quaternary: true, onClick: () => handleEdit(row) }, { default: () => 'Éditer' }),
-          h(NPopconfirm, { onPositiveClick: () => handleDelete(row) }, {
-            trigger: () => h(NButton, { size: 'small', quaternary: true, type: 'error' }, { default: () => 'Suppr.' }),
-            default: () => 'Supprimer cet étudiant?',
-          }),
-        ],
-      })
+      return h(
+        NSpace,
+        { size: 'small' },
+        {
+          default: () => [
+            h(
+              NButton,
+              { size: 'small', quaternary: true, onClick: () => handleEdit(row) },
+              { default: () => 'Éditer' }
+            ),
+            h(
+              NPopconfirm,
+              { onPositiveClick: () => handleDelete(row) },
+              {
+                trigger: () =>
+                  h(
+                    NButton,
+                    { size: 'small', quaternary: true, type: 'error' },
+                    { default: () => 'Suppr.' }
+                  ),
+                default: () => 'Supprimer cet étudiant?',
+              }
+            ),
+          ],
+        }
+      )
     },
   },
 ]
@@ -325,7 +353,7 @@ const pagination = reactive({
 // Students data
 const students = ref([])
 
-const modalTitle = computed(() => isEdit.value ? 'Modifier l\'étudiant' : 'Nouvel étudiant')
+const modalTitle = computed(() => (isEdit.value ? "Modifier l'étudiant" : 'Nouvel étudiant'))
 
 // Methods
 async function loadData() {
@@ -379,7 +407,7 @@ function handleFilter() {
 
 function handleCreate() {
   isEdit.value = false
-  returnToSessionId.value = null  // Clear return when creating new
+  returnToSessionId.value = null // Clear return when creating new
   Object.assign(formData, defaultFormData)
   showModal.value = true
 }

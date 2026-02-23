@@ -55,7 +55,11 @@
           <n-card hoverable>
             <template #header>
               <n-space align="center">
-                <n-avatar :size="48" round :style="{ backgroundColor: getAvatarColor(instructor.specialization) }">
+                <n-avatar
+                  :size="48"
+                  round
+                  :style="{ backgroundColor: getAvatarColor(instructor.specialization) }"
+                >
                   {{ getInitials(instructor) }}
                 </n-avatar>
                 <div>
@@ -64,7 +68,7 @@
                 </div>
               </n-space>
             </template>
-            
+
             <template #header-extra>
               <n-tag :type="getStatusType(instructor.status)" size="small">
                 {{ getStatusLabel(instructor.status) }}
@@ -76,17 +80,17 @@
                 <TheIcon icon="mdi:certificate" :size="16" />
                 <n-text>{{ getSpecializationLabel(instructor.specialization) }}</n-text>
               </n-space>
-              
+
               <n-space v-if="instructor.phone">
                 <TheIcon icon="mdi:phone" :size="16" />
                 <n-text>{{ instructor.phone }}</n-text>
               </n-space>
-              
+
               <n-space v-if="instructor.years_experience">
                 <TheIcon icon="mdi:briefcase" :size="16" />
                 <n-text>{{ instructor.years_experience }} ans d'expérience</n-text>
               </n-space>
-              
+
               <n-space v-if="instructor.hourly_rate">
                 <TheIcon icon="mdi:currency-usd" :size="16" />
                 <n-text>{{ formatMoney(instructor.hourly_rate) }}/h</n-text>
@@ -126,7 +130,7 @@
     <n-empty v-if="!loading && instructors.length === 0" description="Aucun formateur trouvé" />
 
     <!-- Pagination -->
-    <n-space justify="end" class="mt-4" v-if="pagination.itemCount > pagination.pageSize">
+    <n-space v-if="pagination.itemCount > pagination.pageSize" justify="end" class="mt-4">
       <n-pagination
         v-model:page="pagination.page"
         :page-count="Math.ceil(pagination.itemCount / pagination.pageSize)"
@@ -263,7 +267,7 @@
 </template>
 
 <script setup>
-import { h, ref, reactive, computed, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted } from 'vue'
 import { useMessage } from 'naive-ui'
 import { request } from '@/utils'
 
@@ -309,7 +313,7 @@ const rules = {
   first_name: { required: true, message: 'Le prénom est requis', trigger: 'blur' },
   last_name: { required: true, message: 'Le nom est requis', trigger: 'blur' },
   email: [
-    { required: true, message: 'L\'email est requis', trigger: 'blur' },
+    { required: true, message: "L'email est requis", trigger: 'blur' },
     { type: 'email', message: 'Email invalide', trigger: 'blur' },
   ],
 }
@@ -339,7 +343,7 @@ const pagination = reactive({
   itemCount: 0,
 })
 
-const modalTitle = computed(() => isEdit.value ? 'Modifier le formateur' : 'Nouveau formateur')
+const modalTitle = computed(() => (isEdit.value ? 'Modifier le formateur' : 'Nouveau formateur'))
 
 // Helper functions
 function formatMoney(value) {
@@ -348,7 +352,9 @@ function formatMoney(value) {
 }
 
 function getInitials(instructor) {
-  return `${instructor.first_name?.charAt(0) || ''}${instructor.last_name?.charAt(0) || ''}`.toUpperCase()
+  return `${instructor.first_name?.charAt(0) || ''}${
+    instructor.last_name?.charAt(0) || ''
+  }`.toUpperCase()
 }
 
 function getAvatarColor(specialization) {
@@ -376,7 +382,7 @@ function getStatusLabel(status) {
 }
 
 function getSpecializationLabel(spec) {
-  const option = specializationOptions.find(o => o.value === spec)
+  const option = specializationOptions.find((o) => o.value === spec)
   return option?.label || spec
 }
 

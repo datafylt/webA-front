@@ -15,16 +15,16 @@ export const publicRoutes = [
         path: '',
         name: 'Home',
         component: () => import('@/views/public/home/home.vue'),
-        meta: { 
+        meta: {
           title: 'Accueil - Formation Électro Inc',
-          public: true 
-        }
-      }
+          public: true,
+        },
+      },
     ],
-    meta: { 
+    meta: {
       public: true,
-      order: -1  // Show before admin routes
-    }
+      order: -1, // Show before admin routes
+    },
   },
   {
     path: '/about',
@@ -35,14 +35,14 @@ export const publicRoutes = [
         path: '',
         name: 'About',
         component: () => import('@/views/public/about/about.vue'),
-        meta: { 
+        meta: {
           title: 'À propos de nous - Formation Électro Inc',
-          public: true 
-        }
-      }
+          public: true,
+        },
+      },
     ],
     meta: { public: true },
-    isHidden: true
+    isHidden: true,
   },
   {
     path: '/programs',
@@ -53,10 +53,10 @@ export const publicRoutes = [
         path: '',
         name: 'Programs',
         component: () => import('@/views/public/programs/programs.vue'),
-        meta: { 
+        meta: {
           title: 'Programmes - Formation Électro Inc',
-          public: true 
-        }
+          public: true,
+        },
       },
       {
         path: ':id',
@@ -64,12 +64,12 @@ export const publicRoutes = [
         component: () => import('@/views/public/programs/program-detail.vue'),
         meta: {
           title: 'Programme - Formation Électro Inc',
-          public: true
-        }
-      }
+          public: true,
+        },
+      },
     ],
     meta: { public: true },
-    isHidden: true
+    isHidden: true,
   },
   {
     path: '/instructors',
@@ -80,14 +80,14 @@ export const publicRoutes = [
         path: '',
         name: 'Instructors',
         component: () => import('@/views/public/instructors/instructors.vue'),
-        meta: { 
+        meta: {
           title: 'Nos instructeurs - Formation Électro Inc',
-          public: true 
-        }
-      }
+          public: true,
+        },
+      },
     ],
     meta: { public: true },
-    isHidden: true
+    isHidden: true,
   },
   {
     path: '/contact',
@@ -98,15 +98,15 @@ export const publicRoutes = [
         path: '',
         name: 'Contact',
         component: () => import('@/views/public/contact/contact.vue'),
-        meta: { 
+        meta: {
           title: 'Contactez-nous - Formation Électro Inc',
-          public: true 
-        }
-      }
+          public: true,
+        },
+      },
     ],
     meta: { public: true },
-    isHidden: true
-  }
+    isHidden: true,
+  },
 ]
 
 export default publicRoutes
